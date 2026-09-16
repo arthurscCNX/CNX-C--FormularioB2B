@@ -1,7 +1,7 @@
 <title>Cadastro de Parceiros</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   :root{
     color-scheme: dark;
@@ -21,12 +21,12 @@
     --text:#FEFEFE;
     --text-secondary:#CFCFCF;
     --text-muted:#8C8C8C;
-    --radius-lg:22px;
-    --radius-md:12px;
+    --radius-lg:18px;
+    --radius-md:10px;
     --radius-sm:8px;
-    --font-display:'Work Sans','Helvetica Neue',Arial,sans-serif;
-    --font-body:'Work Sans','Helvetica Neue',Arial,sans-serif;
-    --shadow-lg: 0 20px 50px -20px rgba(0,0,0,.6);
+    --font-display:'Montserrat','Helvetica Neue',Arial,sans-serif;
+    --font-body:'Montserrat','Helvetica Neue',Arial,sans-serif;
+    --shadow-lg: 0 16px 36px -22px rgba(0,0,0,.7);
   }
 
   *{box-sizing:border-box;}
@@ -61,13 +61,8 @@
   .eyebrow::before{content:"";width:16px;height:2px;background:var(--primary);border-radius:2px;}
   .hero h1{font-size:clamp(28px,5vw,40px);font-weight:800;line-height:1.12;}
   .hero p{margin-top:14px;color:var(--text-secondary);font-size:16px;max-width:56ch;}
-  .trustrow{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;}
-  .trustchip{
-    display:inline-flex;align-items:center;gap:6px;
-    background:var(--surface);border:1px solid var(--border);
-    border-radius:999px;padding:7px 14px;font-size:13px;color:var(--text-secondary);
-  }
-  .trustchip svg{width:14px;height:14px;color:var(--accent);flex:none;}
+  .trustrow{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:20px;font-size:13.5px;color:var(--text-secondary);}
+  .trustrow i{color:var(--border-light);font-style:normal;}
 
   /* ---------- Progress ---------- */
   .progress-shell{
@@ -81,7 +76,7 @@
   .progress-step b{color:var(--text);font-weight:700;}
   .progress-label{color:var(--primary-light);font-weight:700;text-align:right;}
   .progress-track{height:6px;border-radius:999px;background:var(--elevated);overflow:hidden;}
-  .progress-fill{height:100%;background:linear-gradient(90deg,var(--primary-dark),var(--primary),var(--secondary));border-radius:999px;transition:width .35s ease;}
+  .progress-fill{height:100%;background:var(--primary);border-radius:999px;transition:width .35s ease;}
 
   /* ---------- Card / steps ---------- */
   form{margin-top:26px;}
@@ -96,17 +91,15 @@
     border-radius:calc(var(--radius-lg) - 1px);
     padding:26px 24px 28px;
   }
-  .step-head{display:flex;gap:14px;align-items:flex-start;margin-bottom:22px;}
-  .step-icon{
-    width:44px;height:44px;flex:none;border-radius:12px;
-    background:linear-gradient(150deg,var(--primary-light),var(--primary-dark));
-    display:flex;align-items:center;justify-content:center;
-    box-shadow:0 8px 18px -8px rgba(255,105,0,.6);
+  .step-head{display:flex;gap:16px;align-items:flex-start;margin-bottom:22px;padding-bottom:18px;border-bottom:1px solid var(--border);}
+  .step-marker{
+    flex:none;font-family:var(--font-display);font-weight:800;font-size:32px;line-height:1;
+    color:var(--primary);letter-spacing:-0.02em;padding-top:2px;
+    font-variant-numeric:tabular-nums;
   }
-  .step-icon svg{width:22px;height:22px;color:#fff;}
+  .step-marker::after{content:"/10";font-size:13px;font-weight:600;color:var(--text-muted);margin-left:1px;}
   .step-head h2{font-size:21px;font-weight:700;}
   .step-head p{color:var(--text-secondary);font-size:14px;margin-top:5px;}
-  .step-num{font-size:12px;color:var(--text-muted);font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px;}
 
   .field-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
   .field-grid.single{grid-template-columns:1fr;}
@@ -137,7 +130,7 @@
     font-weight:600;cursor:pointer;transition:all .15s ease;
   }
   .chip:hover{border-color:var(--border-light);color:var(--text);}
-  .chip[aria-pressed="true"]{background:linear-gradient(135deg,var(--primary-light),var(--primary-dark));border-color:var(--primary);color:#fff;box-shadow:0 6px 14px -6px rgba(255,105,0,.55);}
+  .chip[aria-pressed="true"]{background:var(--primary);border-color:var(--primary-dark);color:#fff;}
   .chip-error{display:none;color:var(--danger);font-size:12.5px;margin-top:2px;}
   .chip-error.show{display:block;}
 
@@ -193,9 +186,9 @@
   }
   .btn:active{transform:translateY(1px);}
   .btn svg{width:16px;height:16px;}
-  .btn-primary{background:linear-gradient(135deg,var(--primary-light),var(--primary-dark));color:#fff;box-shadow:0 10px 22px -10px rgba(255,105,0,.6);}
-  .btn-primary:hover{filter:brightness(1.06);}
-  .btn-primary:disabled{opacity:.55;cursor:not-allowed;filter:none;}
+  .btn-primary{background:var(--primary);border-color:var(--primary-dark);color:#fff;}
+  .btn-primary:hover{background:var(--primary-dark);}
+  .btn-primary:disabled{opacity:.55;cursor:not-allowed;}
   .btn-ghost{background:transparent;border-color:var(--border-light);color:var(--text-secondary);}
   .btn-ghost:hover{border-color:var(--text-secondary);color:var(--text);}
   .btn-block{width:100%;}
@@ -311,9 +304,9 @@
     <h1>Leve o seu negócio para milhares de assinantes do Clube Curta Mais</h1>
     <p>Preencha as informações abaixo para cadastrar seu estabelecimento na plataforma. Esses dados serão usados para divulgação da marca e apresentação do benefício aos assinantes.</p>
     <div class="trustrow">
-      <span class="trustchip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>Sem taxa de adesão</span>
-      <span class="trustchip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>Sem burocracia</span>
-      <span class="trustchip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>Leva ~10 minutos</span>
+      <span>Sem taxa de adesão</span><i>·</i>
+      <span>Sem burocracia</span><i>·</i>
+      <span>Leva cerca de 10 minutos</span>
     </div>
   </div>
 
@@ -331,9 +324,8 @@
     <section class="cardframe step" data-step="1">
       <div class="card">
         <div class="step-head">
-          <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 9h1m4 0h1m-6 4h1m4 0h1m-6 4h1m4 0h1"/></svg></div>
+          <div class="step-marker">01</div>
           <div>
-            <div class="step-num">Seção 1 de 10</div>
             <h2>Dados do estabelecimento</h2>
             <p>Informações básicas para identificarmos seu negócio na plataforma.</p>
           </div>
@@ -425,9 +417,8 @@
     <section class="cardframe step" data-step="2" hidden>
       <div class="card">
         <div class="step-head">
-          <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+          <div class="step-marker">02</div>
           <div>
-            <div class="step-num">Seção 2 de 10</div>
             <h2>Informações comerciais</h2>
             <p>Ajuda a equipe do Clube a dimensionar a divulgação do seu benefício.</p>
           </div>
@@ -456,9 +447,8 @@
     <section class="cardframe step" data-step="3" hidden>
       <div class="card">
         <div class="step-head">
-          <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 10-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 000-7.78z"/></svg></div>
+          <div class="step-marker">03</div>
           <div>
-            <div class="step-num">Seção 3 de 10</div>
             <h2>Benefício oferecido aos assinantes</h2>
             <p>Descreva com detalhes como funciona o benefício — é o que os assinantes vão ler.</p>
           </div>
@@ -516,9 +506,8 @@
     <section class="cardframe step" data-step="4" hidden>
       <div class="card">
         <div class="step-head">
-          <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></div>
+          <div class="step-marker">04</div>
           <div>
-            <div class="step-num">Seção 4 de 10</div>
             <h2>Canal de atendimento ao assinante</h2>
             <p>Esse contato será usado pelos assinantes em caso de dúvidas sobre o benefício.</p>
           </div>
@@ -546,9 +535,8 @@
     <section class="cardframe step" data-step="5" hidden>
       <div class="card">
         <div class="step-head">
-          <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 010 18 14 14 0 010-18z"/></svg></div>
+          <div class="step-marker">05</div>
           <div>
-            <div class="step-num">Seção 5 de 10</div>
             <h2>Redes sociais e presença digital</h2>
             <p>Todos os campos são opcionais — preencha o que tiver.</p>
           </div>
@@ -588,9 +576,8 @@
     <section class="cardframe step" data-step="6" hidden>
       <div class="card">
         <div class="step-head">
-          <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10.5" r="1.5"/><path d="M21 15l-5-5-9 9"/></svg></div>
+          <div class="step-marker">06</div>
           <div>
-            <div class="step-num">Seção 6 de 10</div>
             <h2>Fotos e materiais de divulgação</h2>
             <p>Envie fotos em alta qualidade da fachada, ambientes e principais produtos/serviços — quanto melhor o material, melhor a divulgação.</p>
           </div>
@@ -633,9 +620,8 @@
     <section class="cardframe step" data-step="7" hidden>
       <div class="card">
         <div class="step-head">
-          <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20l9-16H3l9 16z"/><path d="M12 4v16"/></svg></div>
+          <div class="step-marker">07</div>
           <div>
-            <div class="step-num">Seção 7 de 10</div>
             <h2>Descrição da marca</h2>
             <p>Um texto envolvente ajuda a atrair mais assinantes para o seu negócio.</p>
           </div>
@@ -671,9 +657,8 @@
     <section class="cardframe step" data-step="8" hidden>
       <div class="card">
         <div class="step-head">
-          <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H7l-3 3V4z"/></svg></div>
+          <div class="step-marker">08</div>
           <div>
-            <div class="step-num">Seção 8 de 10</div>
             <h2>Observações</h2>
             <p>Alguma regra, condição ou orientação adicional que os assinantes devem saber?</p>
           </div>
@@ -697,9 +682,8 @@
     <section class="cardframe step" data-step="9" hidden>
       <div class="card">
         <div class="step-head">
-          <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4.5 5-6 8-6s6.5 1.5 8 6"/></svg></div>
+          <div class="step-marker">09</div>
           <div>
-            <div class="step-num">Seção 9 de 10</div>
             <h2>Responsável pelo estabelecimento</h2>
             <p>Quem responde oficialmente pela parceria com o Clube Curta Mais.</p>
           </div>
@@ -731,9 +715,8 @@
     <section class="cardframe step" data-step="10" hidden>
       <div class="card">
         <div class="step-head">
-          <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
+          <div class="step-marker">10</div>
           <div>
-            <div class="step-num">Seção 10 de 10</div>
             <h2>Revisão e aceite</h2>
             <p>Confira as informações antes de enviar o seu cadastro.</p>
           </div>
