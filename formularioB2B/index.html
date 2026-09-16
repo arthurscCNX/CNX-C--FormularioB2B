@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cadastro de Parceiros — Clube Curta Mais</title>
+<meta name="description" content="Formulário oficial de cadastro para novos parceiros do Clube Curta Mais.">
+<link rel="icon" href="/assets/img/simbolo.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    color-scheme: dark;
+    --bg:#0A0A0A;
+    --surface:#161616;
+    --elevated:#1F1F1F;
+    --elevated-2:#262626;
+    --card-grad: linear-gradient(235deg, #4d4d4d 0%, #383838 28%, #242424 62%, #171717 100%);
+    --border:#333333;
+    --border-light:#4d4d4d;
+    --primary:#FF6900;
+    --primary-dark:#E65C00;
+    --primary-light:#FF8533;
+    --secondary:#FFB800;
+    --accent:#3CDBC0;
+    --danger:#FF6B6B;
+    --text:#FEFEFE;
+    --text-secondary:#CFCFCF;
+    --text-muted:#8C8C8C;
+    --radius-lg:18px;
+    --radius-md:10px;
+    --radius-sm:8px;
+    --font-display:'Montserrat','Helvetica Neue',Arial,sans-serif;
+    --font-body:'Montserrat','Helvetica Neue',Arial,sans-serif;
+    --shadow-lg: 0 16px 36px -22px rgba(0,0,0,.7);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--font-body);
+    padding-inline:20px;
+    padding-block:0 40px;
+  }
+  .wrap{max-width:720px;margin:0 auto;}
+  a{color:var(--primary-light);}
+  h1,h2,h3{font-family:var(--font-display);text-wrap:balance;margin:0;}
+  p{margin:0;line-height:1.55;}
+  ::selection{background:var(--primary);color:#fff;}
+  button{font-family:inherit;}
+  input,textarea,select{font-family:inherit;}
+
+  /* ---------- Header ---------- */
+  .brandbar{
+    display:flex;align-items:center;gap:10px;
+    padding-block:22px 0;
+  }
+  .mark{height:26px;width:auto;flex:none;display:block;}
+
+  .hero{padding-block:28px 20px;}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    color:var(--primary-light);font-weight:700;font-size:12px;
+    letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px;
+  }
+  .eyebrow::before{content:"";width:16px;height:2px;background:var(--primary);border-radius:2px;}
+  .hero h1{font-size:clamp(28px,5vw,40px);font-weight:800;line-height:1.12;}
+  .hero p{margin-top:14px;color:var(--text-secondary);font-size:16px;max-width:56ch;}
+  .trustrow{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:20px;font-size:13.5px;color:var(--text-secondary);}
+  .trustrow i{color:var(--border-light);font-style:normal;}
+
+  /* ---------- Progress ---------- */
+  .progress-shell{
+    position:sticky;top:env(safe-area-inset-top,0px);
+    background:rgba(10,10,10,.88);backdrop-filter:blur(10px);
+    padding-block:14px 12px;margin-top:8px;z-index:20;
+    border-bottom:1px solid var(--border);
+  }
+  .progress-top{display:flex;justify-content:space-between;align-items:baseline;font-size:13px;margin-bottom:9px;gap:12px;}
+  .progress-step{color:var(--text-muted);}
+  .progress-step b{color:var(--text);font-weight:700;}
+  .progress-label{color:var(--primary-light);font-weight:700;text-align:right;}
+  .progress-track{height:6px;border-radius:999px;background:var(--elevated);overflow:hidden;}
+  .progress-fill{height:100%;background:var(--primary);border-radius:999px;transition:width .35s ease;}
+
+  /* ---------- Card / steps ---------- */
+  form{margin-top:26px;}
+  .cardframe{
+    padding:1px;border-radius:var(--radius-lg);
+    background:linear-gradient(150deg,#6b6b6b,#4a4a4a 30%,#2c2c2c 60%,#1c1c1c);
+    box-shadow:var(--shadow-lg);
+    margin-bottom:18px;
+  }
+  .card{
+    background:var(--card-grad);
+    border-radius:calc(var(--radius-lg) - 1px);
+    padding:26px 24px 28px;
+  }
+  .step-head{display:flex;gap:16px;align-items:flex-start;margin-bottom:22px;padding-bottom:18px;border-bottom:1px solid var(--border);}
+  .step-marker{
+    flex:none;font-family:var(--font-display);font-weight:800;font-size:32px;line-height:1;
+    color:var(--primary);letter-spacing:-0.02em;padding-top:2px;
+    font-variant-numeric:tabular-nums;
+  }
+  .step-marker::after{content:"/10";font-size:13px;font-weight:600;color:var(--text-muted);margin-left:1px;}
+  .step-head h2{font-size:21px;font-weight:700;}
+  .step-head p{color:var(--text-secondary);font-size:14px;margin-top:5px;}
+
+  .field-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .field-grid.single{grid-template-columns:1fr;}
+  .field{display:flex;flex-direction:column;gap:7px;min-width:0;}
+  .field.span2{grid-column:1 / -1;}
+  label{font-size:13.5px;font-weight:600;color:var(--text-secondary);}
+  label .req{color:var(--primary-light);margin-left:2px;}
+  .hint{font-size:12.5px;color:var(--text-muted);}
+
+  input[type="text"],input[type="email"],input[type="tel"],input[type="number"],textarea,select{
+    width:100%;background:var(--elevated);border:1px solid var(--border);
+    border-radius:var(--radius-md);padding:12px 14px;color:var(--text);font-size:14.5px;
+    transition:border-color .15s ease, box-shadow .15s ease;
+  }
+  select{appearance:none;background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewBox="0 0 12 8"><path d="M1 1l5 5 5-5" stroke="%238C8C8C" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>');background-repeat:no-repeat;background-position:right 14px center;padding-right:36px;}
+  textarea{resize:vertical;min-height:92px;line-height:1.5;}
+  input::placeholder,textarea::placeholder{color:var(--text-muted);}
+  input:focus,textarea:focus,select:focus{
+    outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(255,105,0,.18);
+  }
+  input:invalid:not(:placeholder-shown):not(:focus){border-color:var(--danger);}
+
+  /* chips */
+  .chip-group{display:flex;flex-wrap:wrap;gap:9px;}
+  .chip{
+    appearance:none;border:1px solid var(--border);background:var(--elevated);
+    color:var(--text-secondary);padding:9px 16px;border-radius:999px;font-size:13.5px;
+    font-weight:600;cursor:pointer;transition:all .15s ease;
+  }
+  .chip:hover{border-color:var(--border-light);color:var(--text);}
+  .chip[aria-pressed="true"]{background:var(--primary);border-color:var(--primary-dark);color:#fff;}
+  .chip-error{display:none;color:var(--danger);font-size:12.5px;margin-top:2px;}
+  .chip-error.show{display:block;}
+
+  /* radio-chip (sim/não) */
+  .chip-group.small .chip{padding:8px 20px;}
+
+  /* exceções de horário */
+  .excecoes-list{display:flex;flex-direction:column;gap:10px;}
+  .excecao-row{display:flex;gap:10px;align-items:center;background:var(--elevated);border:1px solid var(--border);border-radius:var(--radius-md);padding:10px;}
+  .excecao-row select{flex:0 0 132px;background:var(--elevated-2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 12px;color:var(--text);font-size:14px;}
+  .excecao-row input{flex:1;min-width:0;background:var(--elevated-2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 12px;color:var(--text);font-size:14px;}
+  .excecao-row input:focus,.excecao-row select:focus{outline:none;border-color:var(--primary);}
+  .excecao-remove{flex:none;width:32px;height:32px;border-radius:50%;border:none;background:var(--elevated-2);color:var(--text-muted);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:color .15s ease, background .15s ease;}
+  .excecao-remove:hover{background:rgba(255,107,107,.15);color:var(--danger);}
+  .btn-add-excecao{background:transparent;border:1px dashed var(--border-light);color:var(--text-secondary);padding:11px 18px;font-size:13.5px;align-self:flex-start;}
+  .btn-add-excecao:hover{border-color:var(--primary);color:var(--primary-light);}
+  .btn-add-excecao svg{width:15px;height:15px;}
+  @media (max-width:480px){
+    .excecao-row{flex-wrap:wrap;}
+    .excecao-row select{flex:1 1 100%;}
+  }
+
+  /* file upload */
+  .dropzone{
+    position:relative;border:1.5px dashed var(--border-light);border-radius:var(--radius-md);
+    background:var(--elevated);padding:22px;text-align:center;cursor:pointer;transition:border-color .15s ease, background .15s ease;
+  }
+  .dropzone:hover{border-color:var(--primary);background:var(--elevated-2);}
+  .dropzone input[type="file"]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+  .dropzone svg{width:26px;height:26px;color:var(--primary-light);margin-bottom:8px;}
+  .dropzone .dz-title{font-weight:600;font-size:14.5px;}
+  .dropzone .dz-sub{font-size:12.5px;color:var(--text-muted);margin-top:4px;}
+
+  .thumb-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:10px;margin-top:14px;}
+  .thumb{position:relative;aspect-ratio:1;border-radius:10px;overflow:hidden;border:1px solid var(--border);background:var(--elevated);}
+  .thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+  .thumb button{
+    position:absolute;top:4px;right:4px;width:20px;height:20px;border-radius:50%;
+    background:rgba(10,10,10,.75);border:none;color:#fff;font-size:13px;line-height:1;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .logo-preview{display:flex;align-items:center;gap:14px;margin-top:12px;}
+  .logo-preview .thumb{width:72px;height:72px;flex:none;}
+  .file-count{font-size:12.5px;color:var(--text-secondary);margin-top:10px;}
+  .file-count b{color:var(--primary-light);}
+
+  /* nav buttons */
+  .step-nav{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .btn{
+    border-radius:var(--radius-md);padding:13px 22px;font-weight:700;font-size:14.5px;
+    cursor:pointer;border:1px solid transparent;transition:transform .12s ease, filter .15s ease, opacity .15s ease;
+    display:inline-flex;align-items:center;gap:8px;justify-content:center;
+  }
+  .btn:active{transform:translateY(1px);}
+  .btn svg{width:16px;height:16px;}
+  .btn-primary{background:var(--primary);border-color:var(--primary-dark);color:#fff;}
+  .btn-primary:hover{background:var(--primary-dark);}
+  .btn-primary:disabled{opacity:.55;cursor:not-allowed;}
+  .btn-ghost{background:transparent;border-color:var(--border-light);color:var(--text-secondary);}
+  .btn-ghost:hover{border-color:var(--text-secondary);color:var(--text);}
+  .btn-block{width:100%;}
+
+  /* review */
+  .review-group{margin-bottom:18px;border-top:1px solid var(--border);padding-top:16px;}
+  .review-group:first-child{border-top:none;padding-top:0;}
+  .review-group-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+  .review-group-head h3{font-size:14px;color:var(--primary-light);text-transform:uppercase;letter-spacing:.06em;}
+  .review-edit{background:none;border:none;color:var(--text-muted);font-size:12.5px;cursor:pointer;text-decoration:underline;font-weight:600;}
+  .review-edit:hover{color:var(--primary-light);}
+  .review-rows{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px 20px;}
+  .review-row dt{font-size:12px;color:var(--text-muted);}
+  .review-row dd{font-size:14px;margin:2px 0 0;color:var(--text);word-break:break-word;}
+  .review-row{margin:0;}
+
+  .accept{display:flex;gap:12px;align-items:flex-start;background:var(--elevated);border:1px solid var(--border);border-radius:var(--radius-md);padding:14px 16px;margin-bottom:12px;}
+  .accept input{width:18px;height:18px;margin-top:2px;accent-color:var(--primary);flex:none;}
+  .accept p{font-size:13.5px;color:var(--text-secondary);line-height:1.5;}
+
+  .status-banner{display:none;border-radius:var(--radius-md);padding:14px 16px;font-size:14px;margin-top:16px;gap:10px;align-items:flex-start;}
+  .status-banner.show{display:flex;}
+  .status-banner.error{background:rgba(255,107,107,.1);border:1px solid rgba(255,107,107,.4);color:#ffb3b3;}
+  .status-banner svg{width:18px;height:18px;flex:none;margin-top:1px;}
+
+  /* success screen */
+  .success{display:none;text-align:center;padding:52px 20px 30px;}
+  .success.show{display:block;}
+  .success .check{
+    width:72px;height:72px;border-radius:50%;margin:0 auto 20px;
+    background:linear-gradient(135deg,var(--accent),#1fae95);
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 14px 30px -12px rgba(60,219,192,.55);
+  }
+  .success .check svg{width:34px;height:34px;color:#04231d;}
+  .success h2{font-size:24px;margin-bottom:10px;}
+  .success p{color:var(--text-secondary);max-width:44ch;margin:0 auto;}
+  .success .btn{margin-top:24px;}
+
+  footer{margin-top:34px;padding-top:22px;border-top:1px solid var(--border);display:flex;flex-direction:column;gap:8px;align-items:center;text-align:center;}
+  footer p{color:var(--text-muted);font-size:12.5px;}
+  footer a{color:var(--text-secondary);text-decoration:none;font-weight:600;}
+  footer a:hover{color:var(--primary-light);}
+
+  [hidden]{display:none!important;}
+  .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
+
+  @media (max-width:640px){
+    .field-grid{grid-template-columns:1fr;}
+    .card{padding:22px 18px 24px;}
+    .step-nav{flex-direction:column-reverse;}
+    .step-nav .btn{width:100%;}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    *{transition:none!important;animation:none!important;}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="brandbar">
+    <a href="/" aria-label="Voltar para o site do Clube Curta Mais" style="display:flex;align-items:center;">
+    <svg class="mark" viewBox="0 0 196 46" xmlns="http://www.w3.org/2000/svg" aria-label="Clube Curta Mais" role="img">
+      <g fill="#FEFEFE">
+        <path d="M37.9,18.7h-2.2v5.2h-5.2v2.3h5.1v5.3h2.2v-5.3H43v-2.3h-5.1V18.7z"/>
+        <path d="M45,16.7c-2.1-2.1-5-3.5-8.2-3.5c-1.9,0-3.8,0.5-5.4,1.3c-3.2,1.6-7,1.6-10.3,0c-1.6-0.8-3.4-1.3-5.4-1.3
+          c-3.2,0-6.1,1.3-8.2,3.5C5.4,18.9,4,21.8,4,25.1c0,3.2,1.3,6.2,3.4,8.4c2.1,2.1,5,3.5,8.2,3.5c1.9,0,3.8-0.5,5.4-1.3
+          c3.2-1.6,7-1.6,10.3,0c1.6,0.8,3.4,1.3,5.4,1.3c3.2,0,6.1-1.3,8.2-3.5c2.1-2.1,3.4-5.1,3.4-8.4S47.1,18.9,45,16.7z M43.4,31.8
+          c-1.7,1.7-4.1,2.7-6.6,2.7c-1.7,0-3.3-0.5-4.8-1.3c-3.6-2.1-7.9-2.1-11.5,0c-1.4,0.8-3,1.3-4.8,1.3c-2.6,0-5-1.1-6.7-2.7
+          c-1.7-1.7-2.7-4.1-2.7-6.7s1-5,2.7-6.7c1.7-1.7,4.1-2.7,6.7-2.7c1.7,0,3.3,0.5,4.8,1.3C24,19,28.4,19,32,16.9
+          c1.4-0.8,3-1.3,4.8-1.3c2.6,0,5,1.1,6.6,2.7c1.7,1.7,2.7,4.1,2.7,6.7C46.2,27.7,45.1,30.1,43.4,31.8z"/>
+        <path d="M15.7,20.5c1.3,0,2.3,0.5,3.2,1.3l1.6-1.6c-1.3-1.3-2.9-2-4.7-2s-3.5,0.8-4.7,2c-1.3,1.3-2,2.9-2,4.8
+          c0,1.9,0.8,3.6,2,4.8c1.3,1.3,2.9,2,4.7,2s3.5-0.8,4.7-2l-1.6-1.6c-0.8,0.8-1.9,1.3-3.2,1.3s-2.3-0.5-3.2-1.3
+          c-0.8-0.8-1.3-2-1.3-3.2s0.5-2.4,1.3-3.2C13.4,21.1,14.6,20.5,15.7,20.5z"/>
+        <path d="M53,27c0-3.2,2.3-5.3,5.5-5.3c2.2,0,3.5,1,4.1,1.9l-2.1,1.9c-0.4-0.6-1-1-1.9-1c-1.3,0-2.3,0.9-2.3,2.4
+          c0,1.5,1,2.4,2.3,2.4c0.8,0,1.5-0.4,1.9-1l2.1,2c-0.6,0.9-1.9,1.9-4.1,1.9C55.3,32.2,53,30.1,53,27z"/>
+        <path d="M64.1,32V18.1h3.2V32H64.1z"/>
+        <path d="M76.4,32v-1.2c-0.6,0.7-1.8,1.4-3.5,1.4c-2.3,0-3.3-1.3-3.3-3.2v-7.2h3.2v5.9c0,1.3,0.6,1.7,1.7,1.7
+          c0.9,0,1.6-0.5,1.9-1V22h3.2v10H76.4z"/>
+        <path d="M82,32V18.1h3.2v5c0.8-1,1.9-1.4,3-1.4c2.5,0,4.4,2,4.4,5.3c0,3.4-2,5.3-4.4,5.3c-1.1,0-2.1-0.5-3-1.4V32
+          L82,32L82,32z M87.1,29.4c1.3,0,2.2-1,2.2-2.4c0-1.5-1-2.4-2.2-2.4c-0.7,0-1.5,0.4-1.9,0.9v3.1C85.5,29.1,86.4,29.4,87.1,29.4z"/>
+        <path d="M93.6,27c0-2.9,2.2-5.3,5.3-5.3c3,0,5.1,2.2,5.1,5.6V28h-7.2c0.2,0.9,1.1,1.7,2.5,1.7c0.7,0,1.9-0.3,2.4-0.8
+          l1.4,2.1c-1,0.9-2.7,1.3-4.2,1.3C96,32.2,93.6,30.3,93.6,27z M98.9,24.3c-1.4,0-1.9,0.8-2.1,1.6h4.1
+          C100.9,25.1,100.4,24.3,98.9,24.3z"/>
+        <path d="M105.6,27c0-2.9,1.9-5.3,4.9-5.3c1.7,0,2.7,0.7,3.6,1.7l-0.8,0.7c-0.7-1-1.7-1.4-2.7-1.4
+          c-2.3,0-3.8,1.9-3.8,4.3c0,2.4,1.4,4.3,3.8,4.3c1.1,0,2-0.4,2.7-1.4l0.8,0.7c-0.8,1-1.8,1.7-3.6,1.7
+          C107.6,32.2,105.6,29.9,105.6,27z"/>
+        <path d="M123.3,32v-1.5c-0.8,0.9-2.1,1.7-3.6,1.7c-2,0-3.2-1-3.2-3.2v-7h1.1v6.8c0,2,1,2.5,2.4,2.5
+          c1.3,0,2.6-0.8,3.3-1.7V22h1.1v10H123.3z"/>
+        <path d="M127.7,32V22h1.1v1.7c0.8-1.1,2-1.9,3.4-1.9V23c-0.2-0.1-0.4-0.1-0.5-0.1c-1,0-2.4,0.9-2.9,1.8V32H127.7z"/>
+        <path d="M134.6,30.1v-7.2h-1.7v-1h1.7v-2.7h1.1V22h2v1h-2v7c0,0.8,0.4,1.4,1,1.4c0.5,0,0.9-0.2,1.1-0.5l0.4,0.8
+          c-0.4,0.4-0.9,0.6-1.7,0.6C135.1,32.2,134.6,31.5,134.6,30.1z"/>
+        <path d="M146.4,32v-1.2c-0.9,1-2,1.4-3.4,1.4c-1.7,0-3.5-1.2-3.5-3.3c0-2.2,1.8-3.3,3.5-3.3c1.4,0,2.6,0.5,3.4,1.4v-2
+          c0-1.5-1.2-2.3-2.7-2.3c-1.3,0-2.3,0.4-3.2,1.5l-0.6-0.8c1-1.1,2.2-1.7,3.9-1.7c2,0,3.6,1,3.6,3.2V32H146.4z M146.4,30v-2.2
+          c-0.7-1-1.9-1.4-3-1.4c-1.7,0-2.7,1.1-2.7,2.5c0,1.4,1.1,2.5,2.7,2.5C144.6,31.4,145.7,30.9,146.4,30z"/>
+        <path d="M163,32v-6.1c0-0.8-0.4-1.4-1.3-1.4c-0.9,0-1.5,0.5-1.8,1V32h-3.2v-6.1c0-0.8-0.4-1.4-1.3-1.4
+          c-0.9,0-1.5,0.5-1.8,1V32h-3.2V22h3.2v1.3c0.4-0.6,1.7-1.5,3.3-1.5c1.4,0,2.4,0.6,2.9,1.8c0.6-0.9,1.9-1.8,3.5-1.8c1.9,0,3,1,3,3
+          V32H163z"/>
+        <path d="M174.6,32v-1c-0.6,0.8-1.9,1.3-3.1,1.3c-1.6,0-3.5-1.1-3.5-3.3c0-2.4,1.9-3.2,3.5-3.2c1.3,0,2.5,0.4,3.1,1.2
+          v-1c0-0.9-0.8-1.5-2-1.5c-1,0-2,0.4-2.8,1.1l-1.2-2.2c1.3-1.1,3-1.6,4.5-1.6c2.4,0,4.7,0.9,4.7,4V32H174.6z M174.6,29.4v-0.9
+          c-0.4-0.5-1.1-0.7-1.8-0.7c-0.8,0-1.6,0.4-1.6,1.2c0,0.8,0.8,1.2,1.6,1.2C173.5,30.1,174.2,29.9,174.6,29.4z"/>
+        <path d="M179.9,19.2c0-1,0.8-1.9,1.9-1.9c1,0,1.9,0.8,1.9,1.9c0,1-0.8,1.9-1.9,1.9C180.6,21.1,179.9,20.2,179.9,19.2z
+          M180,32V22h3.2v10H180z"/>
+        <path d="M184.8,30.7l1.3-2.3c0.8,0.7,2.3,1.4,3.5,1.4c1,0,1.4-0.3,1.4-0.7c0-1.3-5.9,0.1-5.9-4.1
+          c0-1.8,1.6-3.3,4.3-3.3c1.7,0,3.1,0.5,4.2,1.3l-1.3,2.3c-0.6-0.6-1.7-1.1-3-1.1c-0.8,0-1.3,0.3-1.3,0.7c0,1.1,5.9-0.1,5.9,4.1
+          c0,1.9-1.7,3.3-4.5,3.3C187.7,32.2,185.8,31.6,184.8,30.7z"/>
+      </g>
+    </svg>
+    </a>
+  </div>
+
+  <div class="hero">
+    <div class="eyebrow">Cadastro de parceiros</div>
+    <h1>Leve o seu negócio para milhares de assinantes do Clube Curta Mais</h1>
+    <p>Preencha as informações abaixo para cadastrar seu estabelecimento na plataforma. Esses dados serão usados para divulgação da marca e apresentação do benefício aos assinantes.</p>
+    <div class="trustrow">
+      <span>Sem taxa de adesão</span><i>·</i>
+      <span>Sem burocracia</span><i>·</i>
+      <span>Leva cerca de 10 minutos</span>
+    </div>
+  </div>
+
+  <div class="progress-shell">
+    <div class="progress-top">
+      <span class="progress-step">Etapa <b id="stepNow">1</b> de <b id="stepTotal">10</b></span>
+      <span class="progress-label" id="stepLabel">Dados do estabelecimento</span>
+    </div>
+    <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+  </div>
+
+  <form id="partnerForm" novalidate>
+
+    <!-- STEP 1 -->
+    <section class="cardframe step" data-step="1">
+      <div class="card">
+        <div class="step-head">
+          <div class="step-marker">01</div>
+          <div>
+            <h2>Dados do estabelecimento</h2>
+            <p>Informações básicas para identificarmos seu negócio na plataforma.</p>
+          </div>
+        </div>
+
+        <div class="field-grid">
+          <div class="field span2">
+            <label for="nome_estabelecimento">Nome do estabelecimento / marca<span class="req">*</span></label>
+            <input type="text" id="nome_estabelecimento" name="nome_estabelecimento" placeholder="Ex: Buddha Spa" required>
+          </div>
+          <div class="field">
+            <label for="nome_responsavel">Nome do responsável pelo cadastro<span class="req">*</span></label>
+            <input type="text" id="nome_responsavel" name="nome_responsavel" placeholder="Nome completo" required>
+          </div>
+          <div class="field">
+            <label for="telefone_responsavel">Telefone / WhatsApp do responsável<span class="req">*</span></label>
+            <input type="tel" id="telefone_responsavel" name="telefone_responsavel" placeholder="(00) 00000-0000" inputmode="tel" required>
+          </div>
+          <div class="field span2">
+            <label for="email">E-mail<span class="req">*</span></label>
+            <input type="email" id="email" name="email" placeholder="contato@seuestabelecimento.com" required>
+          </div>
+
+          <div class="field span2">
+            <label>Categoria do estabelecimento<span class="req">*</span></label>
+            <div class="chip-group" id="grp_categoria" role="group" aria-label="Categoria do estabelecimento">
+              <button type="button" class="chip" data-value="Gastronomia">Gastronomia</button>
+              <button type="button" class="chip" data-value="Lazer">Lazer</button>
+              <button type="button" class="chip" data-value="Turismo">Turismo</button>
+              <button type="button" class="chip" data-value="Entretenimento">Entretenimento</button>
+              <button type="button" class="chip" data-value="Bem-estar">Bem-estar</button>
+              <button type="button" class="chip" data-value="Serviços">Serviços</button>
+              <button type="button" class="chip" data-value="Hospedagem">Hospedagem</button>
+            </div>
+            <span class="chip-error" id="err_categoria">Selecione uma categoria.</span>
+          </div>
+
+          <div class="field span2">
+            <label for="endereco_completo">Endereço completo<span class="req">*</span></label>
+            <input type="text" id="endereco_completo" name="endereco_completo" placeholder="Rua, número, bairro, complemento" required>
+          </div>
+          <div class="field">
+            <label for="cidade">Cidade<span class="req">*</span></label>
+            <input type="text" id="cidade" name="cidade" placeholder="Ex: Goiânia" required>
+          </div>
+          <div class="field">
+            <label for="cep">CEP<span class="req">*</span></label>
+            <input type="text" id="cep" name="cep" placeholder="00000-000" inputmode="numeric" maxlength="9" required>
+          </div>
+
+          <div class="field span2">
+            <label>Dias de funcionamento<span class="req">*</span></label>
+            <div class="chip-group" id="grp_dias" role="group" aria-label="Dias de funcionamento">
+              <button type="button" class="chip" data-value="Seg">Seg</button>
+              <button type="button" class="chip" data-value="Ter">Ter</button>
+              <button type="button" class="chip" data-value="Qua">Qua</button>
+              <button type="button" class="chip" data-value="Qui">Qui</button>
+              <button type="button" class="chip" data-value="Sex">Sex</button>
+              <button type="button" class="chip" data-value="Sáb">Sáb</button>
+              <button type="button" class="chip" data-value="Dom">Dom</button>
+            </div>
+            <span class="chip-error" id="err_dias">Selecione ao menos um dia.</span>
+          </div>
+
+          <div class="field span2">
+            <label for="horario_funcionamento">Horário de funcionamento (padrão)<span class="req">*</span></label>
+            <input type="text" id="horario_funcionamento" name="horario_funcionamento" placeholder="Ex: 10h às 22h" required>
+            <span class="hint">Esse é o horário considerado para todos os dias selecionados acima, a não ser que você adicione uma exceção abaixo.</span>
+          </div>
+
+          <div class="field span2">
+            <label>Horário diferente em algum dia? <span class="hint" style="font-weight:400;">(opcional — ex: domingo ou sábado com horário reduzido)</span></label>
+            <div id="excecoesList" class="excecoes-list"></div>
+            <button type="button" class="btn btn-ghost btn-add-excecao" id="addExcecao">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+              Adicionar horário diferente
+            </button>
+            <span class="chip-error" id="err_excecoes"></span>
+          </div>
+        </div>
+
+        <div class="step-nav"><span></span>
+          <button type="button" class="btn btn-primary" data-next>Continuar<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 2 -->
+    <section class="cardframe step" data-step="2" hidden>
+      <div class="card">
+        <div class="step-head">
+          <div class="step-marker">02</div>
+          <div>
+            <h2>Informações comerciais</h2>
+            <p>Ajuda a equipe do Clube a dimensionar a divulgação do seu benefício.</p>
+          </div>
+        </div>
+
+        <div class="field-grid">
+          <div class="field">
+            <label for="ticket_medio">Ticket médio por pessoa (R$)<span class="req">*</span></label>
+            <input type="text" id="ticket_medio" name="ticket_medio" placeholder="Ex: 80,00" inputmode="decimal" required>
+          </div>
+          <div class="field">
+            <label for="vouchers_mes">Vouchers disponibilizados por mês<span class="req">*</span></label>
+            <input type="number" id="vouchers_mes" name="vouchers_mes" placeholder="Ex: 50" min="1" required>
+            <span class="hint">Quantidade de vouchers que seu estabelecimento deseja disponibilizar aos assinantes por mês.</span>
+          </div>
+        </div>
+
+        <div class="step-nav">
+          <button type="button" class="btn btn-ghost" data-prev><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 5l-7 7 7 7"/></svg>Voltar</button>
+          <button type="button" class="btn btn-primary" data-next>Continuar<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 3 -->
+    <section class="cardframe step" data-step="3" hidden>
+      <div class="card">
+        <div class="step-head">
+          <div class="step-marker">03</div>
+          <div>
+            <h2>Benefício oferecido aos assinantes</h2>
+            <p>Descreva com detalhes como funciona o benefício — é o que os assinantes vão ler.</p>
+          </div>
+        </div>
+
+        <div class="field-grid single">
+          <div class="field">
+            <label for="beneficio_oferecido">Qual o benefício oferecido aos assinantes?<span class="req">*</span></label>
+            <input type="text" id="beneficio_oferecido" name="beneficio_oferecido" placeholder="Ex: 20% de desconto no valor da conta" required>
+          </div>
+          <div class="field">
+            <label for="descricao_funcionamento">Descrição detalhada de como o benefício funciona<span class="req">*</span></label>
+            <textarea id="descricao_funcionamento" name="descricao_funcionamento" placeholder="Explique o passo a passo de como o assinante usufrui do benefício" required></textarea>
+          </div>
+          <div class="field">
+            <label for="condicoes_especificas">O benefício possui alguma condição ou regra específica?</label>
+            <textarea id="condicoes_especificas" name="condicoes_especificas" placeholder="Deixe em branco se não houver condições específicas"></textarea>
+          </div>
+          <div class="field">
+            <label for="dias_horarios_beneficio">Dias e horários em que o benefício pode ser utilizado<span class="req">*</span></label>
+            <input type="text" id="dias_horarios_beneficio" name="dias_horarios_beneficio" placeholder="Ex: válido de segunda a sexta, das 18h às 22h" required>
+          </div>
+          <div class="field">
+            <label for="excecoes_produtos">O benefício é válido para todos os produtos/serviços ou possui exceções?</label>
+            <textarea id="excecoes_produtos" name="excecoes_produtos" placeholder="Ex: não válido para bebidas alcoólicas"></textarea>
+          </div>
+          <div class="field">
+            <label for="consumo_minimo">Existe consumo mínimo ou valor mínimo para utilização?</label>
+            <input type="text" id="consumo_minimo" name="consumo_minimo" placeholder="Ex: sem valor mínimo">
+          </div>
+
+          <div class="field">
+            <label>O benefício pode ser utilizado com outras promoções?<span class="req">*</span></label>
+            <div class="chip-group small" id="grp_combinavel" role="group" aria-label="Combina com outras promoções">
+              <button type="button" class="chip" data-value="Sim">Sim</button>
+              <button type="button" class="chip" data-value="Não">Não</button>
+            </div>
+            <span class="chip-error" id="err_combinavel">Selecione uma opção.</span>
+          </div>
+
+          <div class="field">
+            <label for="como_validar">Como o assinante deve apresentar/validar o benefício no estabelecimento?<span class="req">*</span></label>
+            <textarea id="como_validar" name="como_validar" placeholder="Ex: apresentar o card do Clube C+ no aplicativo antes do pagamento" required></textarea>
+          </div>
+        </div>
+
+        <div class="step-nav">
+          <button type="button" class="btn btn-ghost" data-prev><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 5l-7 7 7 7"/></svg>Voltar</button>
+          <button type="button" class="btn btn-primary" data-next>Continuar<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 4 -->
+    <section class="cardframe step" data-step="4" hidden>
+      <div class="card">
+        <div class="step-head">
+          <div class="step-marker">04</div>
+          <div>
+            <h2>Canal de atendimento ao assinante</h2>
+            <p>Esse contato será usado pelos assinantes em caso de dúvidas sobre o benefício.</p>
+          </div>
+        </div>
+
+        <div class="field-grid single">
+          <div class="field">
+            <label for="whatsapp_atendimento">WhatsApp do estabelecimento para atendimento aos assinantes<span class="req">*</span></label>
+            <input type="tel" id="whatsapp_atendimento" name="whatsapp_atendimento" placeholder="(00) 00000-0000" inputmode="tel" required>
+          </div>
+          <div class="field">
+            <label for="orientacoes_assinante">Orientações importantes para o assinante antes de utilizar o benefício</label>
+            <textarea id="orientacoes_assinante" name="orientacoes_assinante" placeholder="Ex: recomendamos reserva antecipada aos finais de semana"></textarea>
+          </div>
+        </div>
+
+        <div class="step-nav">
+          <button type="button" class="btn btn-ghost" data-prev><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 5l-7 7 7 7"/></svg>Voltar</button>
+          <button type="button" class="btn btn-primary" data-next>Continuar<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 5 -->
+    <section class="cardframe step" data-step="5" hidden>
+      <div class="card">
+        <div class="step-head">
+          <div class="step-marker">05</div>
+          <div>
+            <h2>Redes sociais e presença digital</h2>
+            <p>Todos os campos são opcionais — preencha o que tiver.</p>
+          </div>
+        </div>
+
+        <div class="field-grid">
+          <div class="field">
+            <label for="instagram">Instagram</label>
+            <input type="text" id="instagram" name="instagram" placeholder="@seuestabelecimento">
+          </div>
+          <div class="field">
+            <label for="facebook">Facebook</label>
+            <input type="text" id="facebook" name="facebook" placeholder="facebook.com/seuestabelecimento">
+          </div>
+          <div class="field">
+            <label for="tiktok">TikTok</label>
+            <input type="text" id="tiktok" name="tiktok" placeholder="@seuestabelecimento">
+          </div>
+          <div class="field">
+            <label for="site_oficial">Site oficial</label>
+            <input type="text" id="site_oficial" name="site_oficial" placeholder="www.seuestabelecimento.com">
+          </div>
+          <div class="field span2">
+            <label for="google_maps">Google Maps / link do estabelecimento</label>
+            <input type="text" id="google_maps" name="google_maps" placeholder="Link do Google Maps">
+          </div>
+        </div>
+
+        <div class="step-nav">
+          <button type="button" class="btn btn-ghost" data-prev><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 5l-7 7 7 7"/></svg>Voltar</button>
+          <button type="button" class="btn btn-primary" data-next>Continuar<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 6 -->
+    <section class="cardframe step" data-step="6" hidden>
+      <div class="card">
+        <div class="step-head">
+          <div class="step-marker">06</div>
+          <div>
+            <h2>Fotos e materiais de divulgação</h2>
+            <p>Envie fotos em alta qualidade da fachada, ambientes e principais produtos/serviços — quanto melhor o material, melhor a divulgação.</p>
+          </div>
+        </div>
+
+        <div class="field-grid single">
+          <div class="field">
+            <label for="fotos">Fotos do estabelecimento<span class="req">*</span></label>
+            <div class="dropzone" id="dz_fotos">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 16v3a2 2 0 002 2h12a2 2 0 002-2v-3"/></svg>
+              <div class="dz-title">Clique para enviar fotos</div>
+              <div class="dz-sub">Preferencialmente 10 fotos: fachada, ambientes e pratos/serviços</div>
+              <input type="file" id="fotos" name="fotos" accept="image/*" multiple required>
+            </div>
+            <span class="chip-error" id="err_fotos"></span>
+            <div class="file-count" id="fotosCount" hidden>—</div>
+            <div class="thumb-grid" id="fotosPreview"></div>
+          </div>
+
+          <div class="field">
+            <label for="logo">Logo da marca</label>
+            <div class="dropzone" id="dz_logo">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 16v3a2 2 0 002 2h12a2 2 0 002-2v-3"/></svg>
+              <div class="dz-title">Clique para enviar o logo</div>
+              <div class="dz-sub">Se possível, em alta resolução e fundo transparente (PNG)</div>
+              <input type="file" id="logo" name="logo" accept="image/*">
+            </div>
+            <div class="logo-preview" id="logoPreview" hidden></div>
+          </div>
+        </div>
+
+        <div class="step-nav">
+          <button type="button" class="btn btn-ghost" data-prev><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 5l-7 7 7 7"/></svg>Voltar</button>
+          <button type="button" class="btn btn-primary" data-next>Continuar<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 7 -->
+    <section class="cardframe step" data-step="7" hidden>
+      <div class="card">
+        <div class="step-head">
+          <div class="step-marker">07</div>
+          <div>
+            <h2>Descrição da marca</h2>
+            <p>Um texto envolvente ajuda a atrair mais assinantes para o seu negócio.</p>
+          </div>
+        </div>
+
+        <div class="field-grid single">
+          <div class="field">
+            <label for="sobre_estabelecimento">Conte um pouco sobre o seu estabelecimento<span class="req">*</span></label>
+            <textarea id="sobre_estabelecimento" name="sobre_estabelecimento" placeholder="História, proposta e estilo do seu negócio" required></textarea>
+          </div>
+          <div class="field">
+            <label for="descricao_experiencia">Descrição da experiência oferecida<span class="req">*</span></label>
+            <textarea id="descricao_experiencia" name="descricao_experiencia" placeholder="O que o cliente vive ao visitar seu estabelecimento" required></textarea>
+          </div>
+          <div class="field">
+            <label for="diferencial">O que torna sua marca especial ou diferente?<span class="req">*</span></label>
+            <textarea id="diferencial" name="diferencial" placeholder="Seu principal diferencial competitivo" required></textarea>
+          </div>
+          <div class="field">
+            <label for="principais_produtos_servicos">Principais produtos/serviços oferecidos<span class="req">*</span></label>
+            <textarea id="principais_produtos_servicos" name="principais_produtos_servicos" placeholder="Liste os carros-chefe do seu cardápio ou catálogo" required></textarea>
+          </div>
+        </div>
+
+        <div class="step-nav">
+          <button type="button" class="btn btn-ghost" data-prev><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 5l-7 7 7 7"/></svg>Voltar</button>
+          <button type="button" class="btn btn-primary" data-next>Continuar<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 8 -->
+    <section class="cardframe step" data-step="8" hidden>
+      <div class="card">
+        <div class="step-head">
+          <div class="step-marker">08</div>
+          <div>
+            <h2>Observações</h2>
+            <p>Alguma regra, condição ou orientação adicional que os assinantes devem saber?</p>
+          </div>
+        </div>
+
+        <div class="field-grid single">
+          <div class="field">
+            <label for="observacoes">Observações adicionais</label>
+            <textarea id="observacoes" name="observacoes" placeholder="Campo livre — opcional" style="min-height:130px"></textarea>
+          </div>
+        </div>
+
+        <div class="step-nav">
+          <button type="button" class="btn btn-ghost" data-prev><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 5l-7 7 7 7"/></svg>Voltar</button>
+          <button type="button" class="btn btn-primary" data-next>Continuar<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 9 -->
+    <section class="cardframe step" data-step="9" hidden>
+      <div class="card">
+        <div class="step-head">
+          <div class="step-marker">09</div>
+          <div>
+            <h2>Responsável pelo estabelecimento</h2>
+            <p>Quem responde oficialmente pela parceria com o Clube Curta Mais.</p>
+          </div>
+        </div>
+
+        <div class="field-grid">
+          <div class="field span2">
+            <label for="responsavel_nome">Nome do responsável<span class="req">*</span></label>
+            <input type="text" id="responsavel_nome" name="responsavel_nome" placeholder="Nome completo" required>
+          </div>
+          <div class="field">
+            <label for="responsavel_cargo">Cargo / função<span class="req">*</span></label>
+            <input type="text" id="responsavel_cargo" name="responsavel_cargo" placeholder="Ex: Sócio-proprietário" required>
+          </div>
+          <div class="field">
+            <label for="responsavel_whatsapp">WhatsApp<span class="req">*</span></label>
+            <input type="tel" id="responsavel_whatsapp" name="responsavel_whatsapp" placeholder="(00) 00000-0000" inputmode="tel" required>
+          </div>
+        </div>
+
+        <div class="step-nav">
+          <button type="button" class="btn btn-ghost" data-prev><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 5l-7 7 7 7"/></svg>Voltar</button>
+          <button type="button" class="btn btn-primary" data-next>Revisar cadastro<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 10 -->
+    <section class="cardframe step" data-step="10" hidden>
+      <div class="card">
+        <div class="step-head">
+          <div class="step-marker">10</div>
+          <div>
+            <h2>Revisão e aceite</h2>
+            <p>Confira as informações antes de enviar o seu cadastro.</p>
+          </div>
+        </div>
+
+        <div id="reviewContainer"></div>
+
+        <div class="accept">
+          <input type="checkbox" id="aceite_divulgacao" name="aceite_divulgacao" required>
+          <p>Declaro que as informações fornecidas neste formulário estão corretas e autorizo o Curta Mais a utilizar as informações, imagens, logo e materiais enviados para a divulgação da marca como parceira do Clube Curta Mais, nos canais relacionados ao Clube.</p>
+        </div>
+        <div class="accept">
+          <input type="checkbox" id="aceite_condicoes" name="aceite_condicoes" required>
+          <p>Estou de acordo com as condições do benefício informado e me comprometo a respeitá-las durante o período de parceria, bem como atender com excelência o assinante e validar o card para controle de todos.</p>
+        </div>
+
+        <div class="step-nav">
+          <button type="button" class="btn btn-ghost" data-prev><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 5l-7 7 7 7"/></svg>Voltar</button>
+          <button type="submit" class="btn btn-primary" id="submitBtn">Enviar cadastro<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></button>
+        </div>
+
+        <div class="status-banner error" id="statusError" role="alert">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>
+          <span id="statusErrorText"></span>
+        </div>
+        <div class="sr-only" aria-live="polite" id="statusLive"></div>
+      </div>
+    </section>
+
+  </form>
+
+  <div class="cardframe success" id="successScreen">
+    <div class="card success show">
+      <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>
+      <h2>Cadastro enviado com sucesso!</h2>
+      <p>Recebemos as informações do seu estabelecimento. Nossa equipe vai analisar o material e entrar em contato em breve para os próximos passos da parceria.</p>
+      <button type="button" class="btn btn-primary" id="restartBtn">Enviar outro cadastro</button>
+    </div>
+  </div>
+
+  <footer>
+    <p>Clube Curta Mais · Formulário de cadastro de parceiros</p>
+    <p>Dúvidas? Fale com a gente: <a href="tel:+556239310505">(62) 3931-0505</a></p>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* =====================================================================
+     CONTRATO DE INTEGRAÇÃO — gestao.curtamais.com.br
+     ---------------------------------------------------------------------
+     Este formulário envia um POST multipart/form-data (FormData nativo,
+     sem cabeçalho Content-Type manual) para CONFIG.ENDPOINT_URL.
+
+     Campos de texto (todos string, exceto onde indicado):
+       nome_estabelecimento, nome_responsavel, telefone_responsavel, email,
+       categoria, endereco_completo, cidade, cep, horario_funcionamento,
+       dias_funcionamento (string separada por vírgula, ex: "Seg,Ter,Qua"),
+       horario_excecoes (string, ex: "Sábado: 10h às 23h | Domingo: 12h às 18h" —
+         horários diferentes do padrão em dias específicos; pode vir vazia),
+       ticket_medio, vouchers_mes (número),
+       beneficio_oferecido, descricao_funcionamento, condicoes_especificas,
+       dias_horarios_beneficio, excecoes_produtos, consumo_minimo,
+       combinavel_outras_promocoes ("Sim" | "Não"), como_validar,
+       whatsapp_atendimento, orientacoes_assinante,
+       instagram, facebook, tiktok, site_oficial, google_maps,
+       sobre_estabelecimento, descricao_experiencia, diferencial,
+       principais_produtos_servicos, observacoes,
+       responsavel_nome, responsavel_cargo, responsavel_whatsapp,
+       aceite_divulgacao, aceite_condicoes ("true"),
+       enviado_em (ISO 8601), origem ("formulario_b2b_site")
+
+     Arquivos:
+       logo   -> 0 ou 1 arquivo de imagem
+       fotos  -> 1 a 10 arquivos de imagem (campo repetido, mesma chave "fotos")
+
+     TODO (time gestao.curtamais.com.br): substituir ENDPOINT_URL abaixo
+     pela rota real que vai receber esse cadastro.
+  ===================================================================== */
+  const CONFIG = {
+    ENDPOINT_URL: "https://gestao.curtamais.com.br/api/parceiros/cadastro",
+    METHOD: "POST"
+  };
+
+  const totalSteps = 10;
+  let currentStep = 1;
+  const stepLabels = {
+    1:"Dados do estabelecimento",2:"Informações comerciais",3:"Benefício oferecido",
+    4:"Canal de atendimento",5:"Redes sociais",6:"Fotos e materiais",7:"Descrição da marca",
+    8:"Observações",9:"Responsável",10:"Revisão e aceite"
+  };
+
+  const form = document.getElementById("partnerForm");
+  const sections = Array.from(document.querySelectorAll(".step"));
+  const stepNowEl = document.getElementById("stepNow");
+  const stepLabelEl = document.getElementById("stepLabel");
+  const progressFill = document.getElementById("progressFill");
+
+  function renderProgress(){
+    stepNowEl.textContent = currentStep;
+    stepLabelEl.textContent = stepLabels[currentStep];
+    progressFill.style.width = ((currentStep-1)/(totalSteps-1))*100 + "%";
+  }
+
+  function showStep(n){
+    sections.forEach(sec=>{ sec.hidden = Number(sec.dataset.step) !== n; });
+    currentStep = n;
+    renderProgress();
+    if(n === 10) renderReview();
+    document.querySelector(".progress-shell").scrollIntoView({behavior:"smooth", block:"start"});
+  }
+
+  /* ---------------- chip groups ---------------- */
+  const chipState = { categoria:null, dias:new Set(), combinavel:null };
+
+  function setupSingleChipGroup(groupId, stateKey, errId){
+    const group = document.getElementById(groupId);
+    group.addEventListener("click", (e)=>{
+      const chip = e.target.closest(".chip");
+      if(!chip) return;
+      group.querySelectorAll(".chip").forEach(c=>c.setAttribute("aria-pressed","false"));
+      chip.setAttribute("aria-pressed","true");
+      chipState[stateKey] = chip.dataset.value;
+      const err = document.getElementById(errId);
+      if(err) err.classList.remove("show");
+    });
+  }
+
+  function setupMultiChipGroup(groupId, stateKey, errId){
+    const group = document.getElementById(groupId);
+    group.addEventListener("click", (e)=>{
+      const chip = e.target.closest(".chip");
+      if(!chip) return;
+      const pressed = chip.getAttribute("aria-pressed") === "true";
+      chip.setAttribute("aria-pressed", pressed ? "false" : "true");
+      if(pressed) chipState[stateKey].delete(chip.dataset.value);
+      else chipState[stateKey].add(chip.dataset.value);
+      const err = document.getElementById(errId);
+      if(err && chipState[stateKey].size) err.classList.remove("show");
+    });
+  }
+
+  setupSingleChipGroup("grp_categoria","categoria","err_categoria");
+  setupMultiChipGroup("grp_dias","dias","err_dias");
+  setupSingleChipGroup("grp_combinavel","combinavel","err_combinavel");
+
+  /* ---------------- horário: exceções por dia ---------------- */
+  const DIAS_ORDER = ["Seg","Ter","Qua","Qui","Sex","Sáb","Dom"];
+  const DIA_LABEL = {Seg:"Segunda-feira",Ter:"Terça-feira",Qua:"Quarta-feira",Qui:"Quinta-feira",Sex:"Sexta-feira","Sáb":"Sábado",Dom:"Domingo"};
+  let excecoes = [];
+  let excCounter = 0;
+  const excecoesList = document.getElementById("excecoesList");
+  const addExcecaoBtn = document.getElementById("addExcecao");
+  const errExcecoes = document.getElementById("err_excecoes");
+
+  function renderExcecoes(){
+    excecoes = excecoes.filter(ex => chipState.dias.has(ex.day));
+    excecoesList.innerHTML = "";
+    excecoes.forEach(ex=>{
+      const usedByOthers = excecoes.filter(e=>e.id!==ex.id).map(e=>e.day);
+      const availableDays = DIAS_ORDER.filter(d => chipState.dias.has(d) && (d===ex.day || !usedByOthers.includes(d)));
+      const row = document.createElement("div");
+      row.className = "excecao-row";
+      const options = availableDays.map(d=>`<option value="${d}"${d===ex.day?" selected":""}>${DIA_LABEL[d]}</option>`).join("");
+      row.innerHTML = `
+        <select aria-label="Dia da exceção">${options}</select>
+        <input type="text" placeholder="Ex: 12h às 18h" aria-label="Horário para ${DIA_LABEL[ex.day]}">
+        <button type="button" class="excecao-remove" aria-label="Remover exceção de ${DIA_LABEL[ex.day]}">&times;</button>
+      `;
+      const inputEl = row.querySelector("input");
+      inputEl.value = ex.hours;
+      row.querySelector("select").addEventListener("change", (e)=>{ ex.day = e.target.value; renderExcecoes(); });
+      inputEl.addEventListener("input", (e)=>{ ex.hours = e.target.value; errExcecoes.classList.remove("show"); });
+      row.querySelector(".excecao-remove").addEventListener("click", ()=>{
+        excecoes = excecoes.filter(e=>e.id!==ex.id);
+        renderExcecoes();
+      });
+      excecoesList.appendChild(row);
+    });
+
+    const diasLivres = DIAS_ORDER.filter(d=>chipState.dias.has(d) && !excecoes.some(e=>e.day===d));
+    const semDiasLivres = diasLivres.length === 0;
+    addExcecaoBtn.style.opacity = semDiasLivres ? .5 : 1;
+    addExcecaoBtn.style.cursor = semDiasLivres ? "not-allowed" : "pointer";
+  }
+
+  addExcecaoBtn.addEventListener("click", ()=>{
+    const diasLivres = DIAS_ORDER.filter(d=>chipState.dias.has(d) && !excecoes.some(e=>e.day===d));
+    if(!diasLivres.length){
+      errExcecoes.textContent = chipState.dias.size
+        ? "Todos os dias selecionados já têm um horário de exceção."
+        : "Selecione os dias de funcionamento acima primeiro.";
+      errExcecoes.classList.add("show");
+      return;
+    }
+    errExcecoes.classList.remove("show");
+    excecoes.push({ id: "exc" + (excCounter++), day: diasLivres[0], hours: "" });
+    renderExcecoes();
+  });
+
+  document.getElementById("grp_dias").addEventListener("click", (e)=>{
+    if(e.target.closest(".chip")) renderExcecoes();
+  });
+
+  function excecoesResumo(){
+    return excecoes
+      .filter(ex => ex.hours.trim())
+      .sort((a,b)=> DIAS_ORDER.indexOf(a.day) - DIAS_ORDER.indexOf(b.day))
+      .map(ex => `${DIA_LABEL[ex.day]}: ${ex.hours.trim()}`)
+      .join(" | ");
+  }
+
+  /* ---------------- masks ---------------- */
+  function maskPhone(el){
+    el.addEventListener("input", ()=>{
+      let v = el.value.replace(/\D/g,"").slice(0,11);
+      if(v.length > 6){
+        v = v.replace(/(\d{2})(\d{4,5})(\d{0,4})/, (m,a,b,c)=> c ? `(${a}) ${b}-${c}` : `(${a}) ${b}`);
+      } else if(v.length > 2){
+        v = v.replace(/(\d{2})(\d{0,5})/, "($1) $2");
+      } else if(v.length > 0){
+        v = v.replace(/(\d{0,2})/, "($1");
+      }
+      el.value = v;
+    });
+  }
+  ["telefone_responsavel","whatsapp_atendimento","responsavel_whatsapp"].forEach(id=>maskPhone(document.getElementById(id)));
+
+  document.getElementById("cep").addEventListener("input", function(){
+    let v = this.value.replace(/\D/g,"").slice(0,8);
+    if(v.length > 5) v = v.replace(/(\d{5})(\d{0,3})/, "$1-$2");
+    this.value = v;
+  });
+
+  /* ---------------- file uploads ---------------- */
+  const fotosInput = document.getElementById("fotos");
+  const fotosPreview = document.getElementById("fotosPreview");
+  const fotosCount = document.getElementById("fotosCount");
+  const errFotos = document.getElementById("err_fotos");
+
+  function renderFotos(){
+    fotosPreview.innerHTML = "";
+    const files = Array.from(fotosInput.files || []);
+    files.forEach((file, idx)=>{
+      const url = URL.createObjectURL(file);
+      const div = document.createElement("div");
+      div.className = "thumb";
+      div.innerHTML = `<img src="${url}" alt="Foto ${idx+1}"><button type="button" aria-label="Remover foto ${idx+1}">&times;</button>`;
+      div.querySelector("button").addEventListener("click", ()=>removeFoto(idx));
+      fotosPreview.appendChild(div);
+    });
+    if(files.length){
+      fotosCount.hidden = false;
+      fotosCount.innerHTML = `<b>${files.length}</b> de 10 fotos selecionadas${files.length < 3 ? " — recomendamos pelo menos 3" : ""}`;
+    } else {
+      fotosCount.hidden = true;
+    }
+  }
+
+  function removeFoto(idx){
+    const dt = new DataTransfer();
+    Array.from(fotosInput.files).forEach((f,i)=>{ if(i!==idx) dt.items.add(f); });
+    fotosInput.files = dt.files;
+    renderFotos();
+  }
+
+  fotosInput.addEventListener("change", ()=>{
+    if(fotosInput.files.length > 10){
+      const dt = new DataTransfer();
+      Array.from(fotosInput.files).slice(0,10).forEach(f=>dt.items.add(f));
+      fotosInput.files = dt.files;
+      errFotos.textContent = "Selecionamos apenas as 10 primeiras fotos.";
+      errFotos.classList.add("show");
+    } else {
+      errFotos.classList.remove("show");
+    }
+    renderFotos();
+  });
+
+  const logoInput = document.getElementById("logo");
+  const logoPreview = document.getElementById("logoPreview");
+  logoInput.addEventListener("change", ()=>{
+    logoPreview.innerHTML = "";
+    const file = logoInput.files[0];
+    if(!file){ logoPreview.hidden = true; return; }
+    const url = URL.createObjectURL(file);
+    logoPreview.hidden = false;
+    logoPreview.innerHTML = `<div class="thumb"><img src="${url}" alt="Logo enviado"></div><span class="hint">${file.name}</span>`;
+  });
+
+  /* ---------------- validation ---------------- */
+  function validateStep(n){
+    const section = sections.find(s=>Number(s.dataset.step)===n);
+    const nativeRequired = section.querySelectorAll("input[required], textarea[required], select[required]");
+    for(const el of nativeRequired){
+      if(!el.reportValidity()) return false;
+    }
+    if(n===1){
+      if(!chipState.categoria){ document.getElementById("err_categoria").classList.add("show"); document.getElementById("grp_categoria").scrollIntoView({behavior:"smooth",block:"center"}); return false; }
+      if(!chipState.dias.size){ document.getElementById("err_dias").classList.add("show"); document.getElementById("grp_dias").scrollIntoView({behavior:"smooth",block:"center"}); return false; }
+      const excecaoVazia = excecoes.find(ex => !ex.hours.trim());
+      if(excecaoVazia){
+        errExcecoes.textContent = `Preencha o horário de exceção de ${DIA_LABEL[excecaoVazia.day]} ou remova a linha.`;
+        errExcecoes.classList.add("show");
+        excecoesList.scrollIntoView({behavior:"smooth",block:"center"});
+        return false;
+      }
+    }
+    if(n===3){
+      if(!chipState.combinavel){ document.getElementById("err_combinavel").classList.add("show"); document.getElementById("grp_combinavel").scrollIntoView({behavior:"smooth",block:"center"}); return false; }
+    }
+    return true;
+  }
+
+  document.querySelectorAll("[data-next]").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      if(!validateStep(currentStep)) return;
+      showStep(Math.min(currentStep+1, totalSteps));
+    });
+  });
+  document.querySelectorAll("[data-prev]").forEach(btn=>{
+    btn.addEventListener("click", ()=> showStep(Math.max(currentStep-1, 1)));
+  });
+
+  /* ---------------- review ---------------- */
+  function val(id){ const el = document.getElementById(id); return el ? el.value.trim() : ""; }
+  function display(v){ return v && v.length ? v : "—"; }
+
+  function renderReview(){
+    const groups = [
+      { title:"Estabelecimento", step:1, rows:[
+        ["Nome do estabelecimento", val("nome_estabelecimento")],
+        ["Responsável pelo cadastro", val("nome_responsavel")],
+        ["Telefone/WhatsApp", val("telefone_responsavel")],
+        ["E-mail", val("email")],
+        ["Categoria", chipState.categoria],
+        ["Endereço", val("endereco_completo")],
+        ["Cidade", val("cidade")],
+        ["CEP", val("cep")],
+        ["Horário padrão", val("horario_funcionamento")],
+        ["Dias de funcionamento", Array.from(chipState.dias).join(", ")],
+        ["Exceções de horário", excecoesResumo()],
+      ]},
+      { title:"Comercial", step:2, rows:[
+        ["Ticket médio", "R$ " + val("ticket_medio")],
+        ["Vouchers/mês", val("vouchers_mes")],
+      ]},
+      { title:"Benefício", step:3, rows:[
+        ["Benefício", val("beneficio_oferecido")],
+        ["Combina com outras promoções", chipState.combinavel],
+      ]},
+      { title:"Atendimento", step:4, rows:[
+        ["WhatsApp de atendimento", val("whatsapp_atendimento")],
+      ]},
+      { title:"Redes sociais", step:5, rows:[
+        ["Instagram", val("instagram")],
+        ["Facebook", val("facebook")],
+        ["TikTok", val("tiktok")],
+        ["Site", val("site_oficial")],
+        ["Google Maps", val("google_maps")],
+      ]},
+      { title:"Fotos e materiais", step:6, rows:[
+        ["Fotos selecionadas", (fotosInput.files||[]).length + " foto(s)"],
+        ["Logo", logoInput.files[0] ? logoInput.files[0].name : "Não enviado"],
+      ]},
+      { title:"Responsável pelo estabelecimento", step:9, rows:[
+        ["Nome", val("responsavel_nome")],
+        ["Cargo/função", val("responsavel_cargo")],
+        ["WhatsApp", val("responsavel_whatsapp")],
+      ]},
+    ];
+
+    const container = document.getElementById("reviewContainer");
+    container.innerHTML = groups.map(g=>`
+      <div class="review-group">
+        <div class="review-group-head">
+          <h3>${g.title}</h3>
+          <button type="button" class="review-edit" data-goto="${g.step}">Editar</button>
+        </div>
+        <dl class="review-rows">
+          ${g.rows.map(([label,value])=>`<div class="review-row"><dt>${label}</dt><dd>${display(value)}</dd></div>`).join("")}
+        </dl>
+      </div>
+    `).join("");
+
+    container.querySelectorAll("[data-goto]").forEach(btn=>{
+      btn.addEventListener("click", ()=> showStep(Number(btn.dataset.goto)));
+    });
+  }
+
+  document.getElementById("restartBtn").addEventListener("click", ()=>{
+    form.reset();
+    chipState.categoria = null; chipState.dias.clear(); chipState.combinavel = null;
+    document.querySelectorAll(".chip").forEach(c=>c.setAttribute("aria-pressed","false"));
+    excecoes = [];
+    renderExcecoes();
+    renderFotos();
+    logoPreview.hidden = true; logoPreview.innerHTML = "";
+    document.getElementById("successScreen").classList.remove("show");
+    form.hidden = false;
+    showStep(1);
+  });
+
+  /* ---------------- submit ---------------- */
+  const statusError = document.getElementById("statusError");
+  const statusErrorText = document.getElementById("statusErrorText");
+  const statusLive = document.getElementById("statusLive");
+  const submitBtn = document.getElementById("submitBtn");
+
+  form.addEventListener("submit", async (e)=>{
+    e.preventDefault();
+    if(!validateStep(10)) return;
+
+    statusError.classList.remove("show");
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Enviando...";
+    statusLive.textContent = "Enviando cadastro...";
+
+    const fd = new FormData();
+    const textFields = [
+      "nome_estabelecimento","nome_responsavel","telefone_responsavel","email",
+      "endereco_completo","cidade","cep","horario_funcionamento",
+      "ticket_medio","vouchers_mes",
+      "beneficio_oferecido","descricao_funcionamento","condicoes_especificas",
+      "dias_horarios_beneficio","excecoes_produtos","consumo_minimo","como_validar",
+      "whatsapp_atendimento","orientacoes_assinante",
+      "instagram","facebook","tiktok","site_oficial","google_maps",
+      "sobre_estabelecimento","descricao_experiencia","diferencial","principais_produtos_servicos",
+      "observacoes","responsavel_nome","responsavel_cargo","responsavel_whatsapp"
+    ];
+    textFields.forEach(id=> fd.append(id, val(id)));
+    fd.append("categoria", chipState.categoria || "");
+    fd.append("dias_funcionamento", Array.from(chipState.dias).join(","));
+    fd.append("horario_excecoes", excecoesResumo());
+    fd.append("combinavel_outras_promocoes", chipState.combinavel || "");
+    fd.append("aceite_divulgacao", document.getElementById("aceite_divulgacao").checked ? "true" : "false");
+    fd.append("aceite_condicoes", document.getElementById("aceite_condicoes").checked ? "true" : "false");
+    fd.append("enviado_em", new Date().toISOString());
+    fd.append("origem", "formulario_b2b_site");
+
+    if(logoInput.files[0]) fd.append("logo", logoInput.files[0], logoInput.files[0].name);
+    Array.from(fotosInput.files).forEach(f=> fd.append("fotos", f, f.name));
+
+    try{
+      const res = await fetch(CONFIG.ENDPOINT_URL, { method: CONFIG.METHOD, body: fd });
+      if(!res.ok) throw new Error("HTTP " + res.status);
+      form.hidden = true;
+      document.getElementById("successScreen").classList.add("show");
+      statusLive.textContent = "Cadastro enviado com sucesso.";
+    } catch(err){
+      statusErrorText.textContent = "Não foi possível enviar seu cadastro agora. Verifique sua conexão e tente novamente. Se o problema continuar, fale com a gente pelo WhatsApp (62) 3931-0505.";
+      statusError.classList.add("show");
+      statusLive.textContent = "Falha ao enviar o cadastro.";
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = 'Enviar cadastro<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>';
+    }
+  });
+
+  renderProgress();
+})();
+</script>
+</body>
+</html>
