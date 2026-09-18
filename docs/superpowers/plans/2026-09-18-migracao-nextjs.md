@@ -55,8 +55,34 @@ Tudo é portado de `index.html` (4.501 linhas). CSS: linhas **12–2873**. Corpo
 | 12 | Faq | 4288–4360 | 4362–4395 |
 | 13 | Footer | 4398–4495 | — |
 
-**Código morto:** `.sticky-cta` (CSS ~2773–2845) não tem HTML correspondente. Não portar;
-decisão do Yuri na Tarefa 15 (pendência P6).
+O CSS traz marcadores `/* ===== NN-nome.html ===== */` herdados dos widgets do
+Elementor, que delimitam com precisão o trecho de cada seção:
+
+| Bloco | Linhas CSS | Destino |
+|---|---|---|
+| (reset global) | 13–21 | `app/globals.css` |
+| 01 faixa + header | 22–462 | `UrgencyBar`, `Header` |
+| 02 hero | 463–797 | `Hero` |
+| 03 números | 798–939 | `Numbers` |
+| 04 parceiros | 940–1134 | `Partners` |
+| 05 experiências | 1135–1372 | `Experiences` |
+| 06 como funciona | 1373–1549 | `HowItWorks` |
+| 07 calculadora | 1550–1734 | `Calculator` |
+| 08 depoimentos | 1735–1993 | `Testimonials` |
+| 09 planos | 1994–2380 | `Plans` |
+| 10 garantia | 2381–2447 | `Guarantee` |
+| 11 FAQ | 2448–2550 | `Faq` |
+| 12 rodapé | 2551–2771 | `Footer` |
+| 13 sticky-cta | 2772–2873 | **descartar** |
+
+**Código morto:** o bloco 13 (`.sticky-cta`, CSS 2772–2873) não tem HTML
+correspondente — o widget tinha estilo e corpo vazio. Não portar; decisão do Yuri na
+Tarefa 15 (pendência P6).
+
+**Regra de tipografia ao portar:** o CSS legado escreve `font-family: 'Sora'` e
+`'DM Sans'` literalmente. Como as fontes passam a vir de `next/font`, trocar por
+`var(--font-display)` e `var(--font-body)` respectivamente. É substituição mecânica e
+não altera o resultado visual.
 
 ---
 
@@ -147,10 +173,10 @@ Next.js carregando. **Fim da Etapa 1 — parar e mostrar ao Yuri.**
 **Arquivos:**
 - Criar: `app/globals.css`, `app/fonts.ts`
 - Modificar: `app/layout.tsx`
-- Criar: `public/fonts/` (arquivos `.woff2`)
 
 **Consome:** projeto da Tarefa 1.
-**Produz:** `app/fonts.ts` exportando `sora` e `dmSans` (objetos `NextFontWithVariable`);
+**Produz:** `app/fonts.ts` exportando `sora` e `dmSans` (com as variáveis CSS
+`--font-display` e `--font-body`);
 `app/globals.css` com todos os tokens `--*` disponíveis globalmente.
 
 - [ ] **Passo 1: Extrair os tokens e o reset do CSS legado**
@@ -175,32 +201,25 @@ Tokens que obrigatoriamente aparecem em `:root`:
 }
 ```
 
-- [ ] **Passo 2: Baixar as fontes e servir localmente**
+- [ ] **Passo 2: Servir as fontes pelo próprio domínio**
 
-Hoje o site busca Sora e DM Sans no Google Fonts a cada visita. Baixar os `.woff2` dos
-pesos realmente usados — Sora 400/600/700/800, DM Sans 400/500/600 — para
-`public/fonts/`, e criar `app/fonts.ts`:
+Hoje o site busca Sora e DM Sans no Google Fonts a cada visita. `next/font/google`
+baixa as duas **no momento do build** e as serve do domínio do site — mesmo ganho de
+velocidade e privacidade, sem arquivo `.woff2` versionado à mão. Criar `app/fonts.ts`:
 
 ```ts
-import localFont from 'next/font/local';
+import { Sora, DM_Sans } from 'next/font/google';
 
-export const sora = localFont({
-  src: [
-    { path: '../public/fonts/Sora-Regular.woff2',  weight: '400', style: 'normal' },
-    { path: '../public/fonts/Sora-SemiBold.woff2', weight: '600', style: 'normal' },
-    { path: '../public/fonts/Sora-Bold.woff2',     weight: '700', style: 'normal' },
-    { path: '../public/fonts/Sora-ExtraBold.woff2',weight: '800', style: 'normal' },
-  ],
+export const sora = Sora({
+  subsets: ['latin'],
+  weight: ['400', '600', '700', '800'],
   variable: '--font-display',
   display: 'swap',
 });
 
-export const dmSans = localFont({
-  src: [
-    { path: '../public/fonts/DMSans-Regular.woff2', weight: '400', style: 'normal' },
-    { path: '../public/fonts/DMSans-Medium.woff2',  weight: '500', style: 'normal' },
-    { path: '../public/fonts/DMSans-SemiBold.woff2',weight: '600', style: 'normal' },
-  ],
+export const dmSans = DM_Sans({
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
   variable: '--font-body',
   display: 'swap',
 });
