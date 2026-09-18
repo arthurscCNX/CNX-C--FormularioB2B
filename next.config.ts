@@ -1,7 +1,16 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  async redirects() {
+    return [
+      {
+        // Parceiros podem ter recebido o endereço antigo; ele não pode quebrar.
+        source: '/formularioB2B',
+        destination: '/formulario-b2b',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
