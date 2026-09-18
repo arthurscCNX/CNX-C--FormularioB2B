@@ -1,0 +1,139 @@
+/* Portado de legacy/index.html, linhas 798-939. Valores inalterados. */
+
+.numbers-section {
+  position: relative;
+  background: #0f0f0f;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  padding: 60px 48px;
+  overflow: hidden;
+}
+.numbers-section::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 80px 80px;
+  pointer-events: none;
+}
+
+/* ══════════════════════════════════════
+   DESKTOP — grid
+══════════════════════════════════════ */
+.numbers-inner {
+  position: relative; z-index: 1;
+  max-width: 1100px; margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+}
+
+.number-item {
+  display: flex; flex-direction: column;
+  align-items: center; text-align: center;
+  padding: 0 32px; position: relative;
+}
+.number-item + .number-item::before {
+  content: '';
+  position: absolute; left: 0; top: 15%; height: 70%;
+  width: 1px; background: rgba(255,255,255,0.07);
+}
+
+.number-icon {
+  width: 44px; height: 44px; border-radius: 12px;
+  background: rgba(255,107,0,0.12);
+  border: 1px solid rgba(255,107,0,0.25);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 16px;
+}
+.number-icon svg {
+  width: 20px; height: 20px;
+  stroke: #FF6B00; fill: none;
+  stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+}
+
+/* valor — o + fica sempre laranja e visível */
+.number-value {
+  font-family: var(--font-display), sans-serif;
+  font-size: 42px; font-weight: 800; color: #fff;
+  letter-spacing: -2px; line-height: 1; margin-bottom: 8px;
+  display: flex; align-items: baseline; gap: 2px;
+}
+.num-prefix,
+.num-suffix {
+  font-family: var(--font-display), sans-serif;
+  font-size: 28px; font-weight: 800;
+  color: #FF6B00; line-height: 1;
+}
+.num-count {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity .5s ease, transform .5s ease;
+}
+.num-count.visible { opacity: 1; transform: translateY(0); }
+
+.number-label {
+  font-size: 14px; color: rgba(255,255,255,0.45);
+  font-weight: 500; line-height: 1.4;
+}
+
+/* ══════════════════════════════════════
+   MOBILE — carrossel horizontal com
+   auto-scroll suave e loop
+══════════════════════════════════════ */
+@media (max-width: 768px) {
+  .numbers-section { padding: 48px 0; }
+
+  .numbers-inner {
+    display: flex;
+    grid-template-columns: unset;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 0;
+    padding: 0;
+  }
+  .numbers-inner::-webkit-scrollbar { display: none; }
+
+  .number-item {
+    flex: 0 0 72vw;
+    max-width: 280px;
+    scroll-snap-align: center;
+    padding: 0 24px;
+  }
+  .number-item + .number-item::before { display: none; }
+
+  /* fade nas bordas */
+  .numbers-section::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(90deg,
+      #0f0f0f 0%,
+      transparent 12%,
+      transparent 88%,
+      #0f0f0f 100%
+    );
+    pointer-events: none; z-index: 2;
+  }
+
+  /* dots indicadores */
+  .carousel-dots {
+    display: flex; justify-content: center; gap: 6px;
+    margin-top: 24px; position: relative; z-index: 3;
+  }
+  .carousel-dot {
+    width: 6px; height: 6px; border-radius: 999px;
+    background: rgba(255,255,255,0.18);
+    transition: background .3s, width .3s;
+  }
+  .carousel-dot.active {
+    background: #FF6B00; width: 20px;
+  }
+}
+
+@media (min-width: 769px) {
+  .carousel-dots { display: none; }
+}
