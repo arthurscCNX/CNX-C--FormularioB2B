@@ -68,7 +68,7 @@ busca e compartilhamento.
 | D5 | Conteúdo | Arquivos de dados em `content/*.ts` | Permite ao Yuri editar preço, parceiro ou depoimento sem tocar em JSX |
 | D6 | Formulário B2B | Proxy server-side via Route Handler | A credencial do gestao não pode existir no navegador (ver §5) |
 | D7 | CTA "Quero Ser Membro" | WhatsApp provisoriamente | Decisão de destino final adiada pelo Yuri |
-| D8 | Números 500 / 120 / 611 | São reais, mantidos | Confirmado pelo Yuri em 18/09/2026 |
+| D8 | Números do site | São reais, mantidos | Confirmado pelo Yuri em 18/09/2026: +500 membros satisfeitos, +120 parceiros exclusivos, R$ +611 de economia média por membro |
 
 ---
 
@@ -270,6 +270,8 @@ testar. A etapa seguinte só começa depois do retorno dele.
 | P5 | Unificar as três famílias tipográficas em duas | Yuri | Nada — sugestão |
 | P6 | Ativar ou descartar a barra flutuante `.sticky-cta` (CSS existe, HTML nunca existiu) | Yuri | Nada — CSS órfão |
 | P7 | Domínio definitivo de produção (para canônica, sitemap e Open Graph) | Yuri | Etapa 4 |
+| P8 | Autenticidade dos depoimentos e do selo de avaliação do Google | Yuri | Nada |
+| P9 | Lista real de parceiros — o legado trazia apenas rótulos de rascunho | Yuri | Etapa 2 |
 
 ---
 

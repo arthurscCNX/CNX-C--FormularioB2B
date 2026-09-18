@@ -25,7 +25,8 @@ o `gestao.curtamais.com.br` e passa por um Route Handler que guarda a credencial
   conferência visual no preview.
 - **Visual idêntico ao atual.** Nenhuma alteração de cor, espaçamento, tipografia ou
   animação sem aprovação explícita do Yuri.
-- **Nada de dado fictício na tela.** Os números 500 / 120 / 611 são reais e ficam.
+- **Nada de dado fictício na tela.** Os números são reais e ficam: +500 membros
+  satisfeitos, +120 parceiros exclusivos, R$ +611 de economia média por membro.
 - Segredos **nunca** com prefixo `NEXT_PUBLIC_`.
 - Commits em português, autoria `yuri@conexax.com.br`.
 - Trabalho na branch `dev`. Push para `main` **somente com autorização expressa do
@@ -296,8 +297,8 @@ export const whatsappLink = (mensagem: string) =>
 
 ```ts
 // content/stats.ts
-export interface Stat { valor: number; sufixo?: string; rotulo: string }
-export const stats: Stat[] = [ /* 500 parceiros, 120 experiências, 611 membros */ ];
+export interface Stat { valor: number; prefixo?: string; sufixo?: string; rotulo: string }
+export const stats: Stat[] = [ /* +500 membros, +120 parceiros, R$ +611 de economia */ ];
 
 // content/partners.ts
 export interface Partner { id: string; nome: string; categoria: string; logo: string }
@@ -723,3 +724,5 @@ autorização e a bateria completa de testes (regra dele, e a spec §8).
 | P5 | Unificar as três famílias tipográficas | Nada — sugestão |
 | P6 | Ativar ou descartar a barra `.sticky-cta` | Tarefa 15, passo 7 |
 | P7 | Domínio definitivo de produção | Tarefa 15, passos 1–3 |
+| P8 | Os três depoimentos e o selo "5,0 no Google · +87 avaliações" são reais? | Nada — decisão do Yuri |
+| P9 | Lista real de parceiros (o legado trazia "Parceiro 01" a "Parceiro 18") | Tarefa 6 |
