@@ -228,7 +228,7 @@ aprovado.
 ### Compatibilidade de URLs
 
 `/formularioB2B` pode já ter sido enviado a parceiros. A rota nova é
-`/formulario-b2b`, e `/formularioB2B` passa a redirecionar permanentemente para ela.
+`/formulario-cadastro`, e `/formularioB2B` passa a redirecionar permanentemente para ela.
 Link antigo não pode quebrar.
 
 ---
@@ -254,7 +254,7 @@ testar. A etapa seguinte só começa depois do retorno dele.
 |---|---|---|
 | 1 | Projeto Next.js, TypeScript, tokens, `vercel.json` em `gru1`, deploy de preview | O endereço abre |
 | 2 | Home portada — 13 seções componentizadas, conteúdo em `content/`, CTA de membro apontando ao WhatsApp | Comparação lado a lado com o site atual, sem diferença visual |
-| 3 | `/formulario-b2b` + `/api/parceiros` + compressão de imagem + redirecionamento do link antigo | Cadastro de teste completo, do início ao fim |
+| 3 | `/formulario-cadastro` + `/api/parceiros` + compressão de imagem + redirecionamento do link antigo | Cadastro de teste completo, do início ao fim |
 | 4 | SEO, Open Graph, JSON-LD, sitemap, analytics, substituição das fotos do Unsplash | Link colado no WhatsApp exibe a capa |
 
 ---

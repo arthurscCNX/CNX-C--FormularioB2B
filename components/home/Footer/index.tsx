@@ -21,7 +21,7 @@ const IconeWhatsapp = ({ preenchido = false }: { preenchido?: boolean }) => (
 const linksClube = [
   { href: '#experiencias', rotulo: 'Experiências' },
   { href: '#plansSection', rotulo: 'Assine' },
-  { href: '/formulario-b2b', rotulo: 'Seja parceiro' },
+  { href: '/formulario-cadastro', rotulo: 'Seja parceiro' },
   { href: '#', rotulo: 'Sobre nós' },
 ];
 

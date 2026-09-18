@@ -367,14 +367,14 @@ Para a seção *S*, com intervalo HTML `[h1,h2]` e script `[s1,s2]` conforme o m
 
 | Tarefa | Seção | HTML | Script | Observação |
 |---|---|---|---|---|
-| 4 | `UrgencyBar` + `Header` | 2881–2951 | 2952–2994 | Drawer mobile: estado React, não classe manual. Links "Seja Parceiro" → `/formulario-b2b` |
+| 4 | `UrgencyBar` + `Header` | 2881–2951 | 2952–2994 | Drawer mobile: estado React, não classe manual. Links "Seja Parceiro" → `/formulario-cadastro` |
 | 5 | `Hero` + `Numbers` | 2997–3098 | 3100–3216 | Contadores animados disparados por `IntersectionObserver` — ler de `content/stats.ts` |
 | 6 | `Partners` + `Experiences` | 3219–3437 | — | Mantêm `<img>` cru por ora; viram `next/image` na Tarefa 15 |
 | 7 | `HowItWorks` + `Calculator` | 3440–3655 | 3541–3586, 3657–3691 | Calculadora: estado controlado, formatar com `Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' })` |
 | 8 | `Testimonials` | 3694–3799 | 3801–3833 | Depoimentos de `content/testimonials.ts` |
 | 9 | `Plans` | 3836–3940 | 3942–4257 | **A maior:** 315 linhas de script. Alternância mensal/anual, seletor de nº de membros e barra de desconto viram estado React |
 | 10 | `Guarantee` + `Faq` | 4260–4360 | 4275–4285, 4362–4395 | FAQ: acordeão com estado; usar `<details>`/`<summary>` se o visual permitir |
-| 11 | `Footer` | 4398–4495 | — | Link "Seja Parceiro" → `/formulario-b2b` |
+| 11 | `Footer` | 4398–4495 | — | Link "Seja Parceiro" → `/formulario-cadastro` |
 
 ---
 
@@ -462,7 +462,7 @@ git push origin dev
 ## Tarefa 13 — Formulário B2B
 
 **Arquivos:**
-- Criar: `app/formulario-b2b/page.tsx`, `components/form/PartnerForm/index.tsx`,
+- Criar: `app/formulario-cadastro/page.tsx`, `components/form/PartnerForm/index.tsx`,
   `components/form/PartnerForm/styles.module.css`, `lib/schemas.ts`,
   `lib/image-compress.ts`
 - Modificar: `next.config.ts` (redirecionamento)
@@ -542,7 +542,7 @@ Parceiros podem já ter recebido `/formularioB2B`. Em `next.config.ts`:
 
 ```ts
 async redirects() {
-  return [{ source: '/formularioB2B', destination: '/formulario-b2b', permanent: true }];
+  return [{ source: '/formularioB2B', destination: '/formulario-cadastro', permanent: true }];
 }
 ```
 
@@ -674,7 +674,7 @@ colar o link no WhatsApp — canal principal do cliente.
 
 - [ ] **Passo 3: `sitemap.ts` e `robots.ts`**
 
-Duas rotas: `/` e `/formulario-b2b`.
+Duas rotas: `/` e `/formulario-cadastro`.
 
 - [ ] **Passo 4: Dados estruturados**
 

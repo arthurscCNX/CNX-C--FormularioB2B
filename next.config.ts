@@ -4,9 +4,15 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
-        // Parceiros podem ter recebido o endereço antigo; ele não pode quebrar.
+        // Endereço original, que pode ter sido enviado a parceiros.
         source: '/formularioB2B',
-        destination: '/formulario-b2b',
+        destination: '/formulario-cadastro',
+        permanent: true,
+      },
+      {
+        // Endereço usado brevemente durante a migração.
+        source: '/formulario-b2b',
+        destination: '/formulario-cadastro',
         permanent: true,
       },
     ];

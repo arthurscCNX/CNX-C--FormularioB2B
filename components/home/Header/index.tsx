@@ -9,7 +9,7 @@ const links = [
   { href: '#', rotulo: 'Sobre', ativo: false },
   { href: '#howSection', rotulo: 'Como Funciona?', ativo: false },
   { href: '#experiencias', rotulo: 'Experiências', ativo: true },
-  { href: '/formulario-b2b', rotulo: 'Seja Parceiro', ativo: false },
+  { href: '/formulario-cadastro', rotulo: 'Seja Parceiro', ativo: false },
 ];
 
 /** Âncora da mesma página continua <a>; rota do site usa Link. */
