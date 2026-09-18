@@ -103,7 +103,6 @@ components/
     Guarantee/
     Faq/
     Footer/
-    StickyCta/
   form/
     PartnerForm/             wizard de 10 etapas
 content/
@@ -254,7 +253,7 @@ testar. A etapa seguinte só começa depois do retorno dele.
 | Etapa | Entrega | Critério de aceite |
 |---|---|---|
 | 1 | Projeto Next.js, TypeScript, tokens, `vercel.json` em `gru1`, deploy de preview | O endereço abre |
-| 2 | Home portada — 14 seções componentizadas, conteúdo em `content/`, CTA de membro apontando ao WhatsApp | Comparação lado a lado com o site atual, sem diferença visual |
+| 2 | Home portada — 13 seções componentizadas, conteúdo em `content/`, CTA de membro apontando ao WhatsApp | Comparação lado a lado com o site atual, sem diferença visual |
 | 3 | `/formulario-b2b` + `/api/parceiros` + compressão de imagem + redirecionamento do link antigo | Cadastro de teste completo, do início ao fim |
 | 4 | SEO, Open Graph, JSON-LD, sitemap, analytics, substituição das fotos do Unsplash | Link colado no WhatsApp exibe a capa |
 
@@ -269,6 +268,8 @@ testar. A etapa seguinte só começa depois do retorno dele.
 | P3 | Destino final do CTA "Quero Ser Membro" | Yuri | Nada — WhatsApp cobre no interim |
 | P4 | Cópia dos cadastros por e-mail (Resend) como rede de segurança | Yuri | Nada — proposto, não aprovado |
 | P5 | Unificar as três famílias tipográficas em duas | Yuri | Nada — sugestão |
+| P6 | Ativar ou descartar a barra flutuante `.sticky-cta` (CSS existe, HTML nunca existiu) | Yuri | Nada — CSS órfão |
+| P7 | Domínio definitivo de produção (para canônica, sitemap e Open Graph) | Yuri | Etapa 4 |
 
 ---
 
