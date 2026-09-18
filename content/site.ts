@@ -8,6 +8,22 @@ export const site = {
   telefone: '6239310505',
   telefoneFormatado: '(62) 3931-0505',
   cidade: 'Goiânia',
+  endereco: {
+    nome: 'HUB CURTA MAIS',
+    linhas: [
+      'Edifício The Prime Office',
+      'Rua 5 Nº691, Loja 02',
+      'Setor Oeste, Goiânia - GO',
+    ],
+  },
+  /**
+   * Perfis sociais. Instagram e TikTok seguem vazios porque o site legado
+   * trazia link morto e as URLs reais ainda não foram informadas (P10).
+   */
+  redes: {
+    instagram: '',
+    tiktok: '',
+  },
 } as const;
 
 /** Monta o link do WhatsApp já com a mensagem preenchida. */

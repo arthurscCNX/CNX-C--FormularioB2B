@@ -1,0 +1,67 @@
+/* Portado de legacy/index.html, linhas 2381-2447. Valores inalterados. */
+
+.guarantee-section {
+  position: relative;
+  padding: 80px 48px;
+  background: #0f0f0f;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  overflow: hidden;
+}
+.guarantee-section::before {
+  content: '';
+  position: absolute;
+  width: 500px; height: 500px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,107,0,0.08) 0%, transparent 65%);
+  top: 50%; left: 50%; transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.guarantee-inner {
+  position: relative; z-index: 1;
+  max-width: 860px; margin: 0 auto;
+  display: flex; align-items: center; gap: 52px;
+  background: rgba(255,107,0,0.07);
+  border: 1px solid rgba(255,107,0,0.22);
+  border-radius: 28px; padding: 48px 52px;
+
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+.guarantee-inner.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.guarantee-icon {
+  width: 88px; height: 88px; flex-shrink: 0;
+  background: rgba(255,107,0,0.12);
+  border: 2px solid rgba(255,107,0,0.30);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+.guarantee-icon svg {
+  width: 44px; height: 44px;
+  stroke: #FF6B00; fill: none;
+  stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+}
+
+.guarantee-text { flex: 1; }
+.guarantee-text h3 {
+  font-family: var(--font-display), sans-serif;
+  font-size: 24px; font-weight: 700; color: #fff;
+  letter-spacing: -0.5px; margin-bottom: 12px;
+}
+.guarantee-text h3 span { color: #FF6B00; }
+.guarantee-text p {
+  font-size: 15px; line-height: 1.7;
+  color: rgba(255,255,255,0.55);
+}
+
+@media (max-width: 680px) {
+  .guarantee-inner {
+    flex-direction: column; text-align: center;
+    padding: 36px 28px; gap: 28px;
+  }
+  .guarantee-section { padding: 60px 24px; }
+}
