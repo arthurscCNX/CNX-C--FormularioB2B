@@ -97,6 +97,13 @@ converte tipos. Campos opcionais chegam presentes e vazios (`""`), não ausentes
 **Guarde os textos como recebidos**, sem normalizar nem cortar. Os campos
 longos podem passar de 1.000 caracteres: use tipo texto, não `varchar(255)`.
 
+O site já aplica tetos antes de enviar, então você nunca receberá mais que
+isto: **300 caracteres** nos campos curtos e **5.000** nos campos de texto
+longo (`descricao_funcionamento`, `condicoes_especificas`, `excecoes_produtos`,
+`como_validar`, `orientacoes_assinante`, `sobre_estabelecimento`,
+`descricao_experiencia`, `diferencial`, `principais_produtos_servicos`,
+`observacoes`, `horario_excecoes`).
+
 ### Arquivos
 
 | Chave | Quantidade | Observações |
@@ -106,7 +113,18 @@ longos podem passar de 1.000 caracteres: use tipo texto, não `varchar(255)`.
 
 As imagens já chegam **redimensionadas e comprimidas** pelo navegador (lado
 maior de 2.000px, JPEG qualidade 0,82), com o total do envio abaixo de 4 MB.
-Não é preciso comprimir de novo, mas valide tipo e tamanho por segurança.
+
+O site valida os arquivos antes de repassar e recusa o envio se algo estiver
+fora do combinado, então você receberá apenas:
+
+- tipos `image/jpeg`, `png`, `webp`, `avif`, `gif`, `heic` ou `heif` — nunca
+  PDF, SVG ou executável;
+- no máximo 4 MB por arquivo e no máximo 10 fotos;
+- **nomes de arquivo já higienizados** — sem barra, contrabarra ou `..`, de
+  modo que `../../etc/passwd.jpg` chega como `passwd.jpg`.
+
+Ainda assim, valide do seu lado: nunca confie no nome do arquivo para montar
+o caminho onde vai gravar.
 
 ---
 

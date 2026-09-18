@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import {
   CATEGORIAS,
@@ -179,6 +179,20 @@ export default function PartnerForm() {
     });
   };
 
+  // URL.createObjectURL dentro do render criaria uma URL nova a cada digitação
+  // e nunca liberaria nenhuma. Aqui são criadas uma vez e liberadas na troca.
+  const previasFotos = useMemo(() => fotos.map((f) => URL.createObjectURL(f)), [fotos]);
+  useEffect(
+    () => () => previasFotos.forEach((u) => URL.revokeObjectURL(u)),
+    [previasFotos],
+  );
+
+  const previaLogo = useMemo(() => (logo ? URL.createObjectURL(logo) : null), [logo]);
+  useEffect(() => {
+    if (!previaLogo) return;
+    return () => URL.revokeObjectURL(previaLogo);
+  }, [previaLogo]);
+
   const totalBytes = useMemo(
     () => fotos.reduce((t, f) => t + f.size, 0) + (logo?.size ?? 0),
     [fotos, logo],
@@ -308,6 +322,12 @@ export default function PartnerForm() {
       }
       if (res.status === 429) {
         setErroEnvio('Muitos envios seguidos. Aguarde alguns minutos e tente de novo.');
+        return;
+      }
+      if (res.status === 503) {
+        setErroEnvio(
+          `Nosso cadastro automático está em manutenção no momento. Fale com a gente pelo WhatsApp ${site.telefoneFormatado} que finalizamos o seu cadastro na hora.`,
+        );
         return;
       }
       setErroEnvio(
@@ -536,7 +556,7 @@ export default function PartnerForm() {
                     {fotos.map((f, i) => (
                       <div className={s.thumb} key={`${f.name}-${i}`}>
                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src={URL.createObjectURL(f)} alt={`Foto ${i + 1}`} />
+                        <img src={previasFotos[i]} alt={`Foto ${i + 1}`} />
                         <button type="button" aria-label={`Remover foto ${i + 1}`} onClick={() => setFotos((l) => l.filter((_, j) => j !== i))}>×</button>
                       </div>
                     ))}
@@ -554,7 +574,7 @@ export default function PartnerForm() {
                     <div className={s['logo-preview']}>
                       <div className={s.thumb}>
                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src={URL.createObjectURL(logo)} alt="Logo enviado" />
+                        <img src={previaLogo ?? ''} alt="Logo enviado" />
                       </div>
                       <span className={s.hint}>{logo.name}</span>
                     </div>

@@ -54,6 +54,20 @@ const perguntasFrequentes = {
   })),
 };
 
+/**
+ * JSON dentro de <script> precisa escapar "<" e os separadores de linha do
+ * Unicode. Sem isso, um "</script>" no conteúdo fecharia a tag e o que viesse
+ * depois seria interpretado como marcação.
+ */
+function jsonSeguro(valor: unknown): string {
+  return JSON.stringify(valor)
+    .replace(/</g, '\\u003c')
+    .replace(/>/g, '\\u003e')
+    .replace(/&/g, '\\u0026')
+    .replace(/\u2028/g, '\\u2028')
+    .replace(/\u2029/g, '\\u2029');
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
@@ -63,14 +77,11 @@ export default function RootLayout({
         {children}
         <script
           type="application/ld+json"
-          // O conteúdo vem de content/, não de entrada de usuário.
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizacao) }}
+          dangerouslySetInnerHTML={{ __html: jsonSeguro(organizacao) }}
         />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(perguntasFrequentes),
-          }}
+          dangerouslySetInnerHTML={{ __html: jsonSeguro(perguntasFrequentes) }}
         />
         <Analytics />
         <SpeedInsights />
