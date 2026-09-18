@@ -271,6 +271,7 @@ testar. A etapa seguinte só começa depois do retorno dele.
 | P6 | Ativar ou descartar a barra flutuante `.sticky-cta` (CSS existe, HTML nunca existiu) | Yuri | Nada — CSS órfão |
 | P7 | Domínio definitivo de produção (para canônica, sitemap e Open Graph) | Yuri | Etapa 4 |
 | ~~P8~~ | Autenticidade dos depoimentos e do selo do Google — confirmados reais em 18/09/2026 | — | resolvida |
+| P10 | URL do perfil do Instagram do Curta Mais | Yuri | Nada |
 | P9 | Logos reais dos parceiros. Decisão de 18/09/2026: manter os rótulos do legado na tela até os logos chegarem | Yuri | Nada |
 
 ---

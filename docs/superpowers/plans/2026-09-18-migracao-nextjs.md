@@ -725,4 +725,5 @@ autorização e a bateria completa de testes (regra dele, e a spec §8).
 | P6 | Ativar ou descartar a barra `.sticky-cta` | Tarefa 15, passo 7 |
 | P7 | Domínio definitivo de produção | Tarefa 15, passos 1–3 |
 | ~~P8~~ | Depoimentos e selo do Google — **confirmados reais pelo Yuri em 18/09/2026** | resolvida |
+| P10 | URL do perfil do Instagram do Curta Mais (o legado tinha link morto) | Nada — link segue morto até informarem |
 | P9 | Logos reais dos parceiros. O Yuri decidiu em 18/09/2026 manter os rótulos "Parceiro 01" a "Parceiro 18" até lá | Nada — trocar `content/partners.ts` quando chegarem |

@@ -1,0 +1,174 @@
+/* Portado de legacy/index.html, linhas 1373-1549. Valores inalterados. */
+
+.how-section {
+  position: relative;
+  padding: 100px 48px;
+  background: #0f0f0f;
+  overflow: hidden;
+}
+.how-section::before {
+  content: '';
+  position: absolute;
+  width: 600px; height: 600px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,107,0,0.10) 0%, transparent 65%);
+  top: 50%; left: 50%; transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+.how-section::after {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 80px 80px;
+  pointer-events: none;
+}
+
+.how-inner { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; }
+
+/* ── Título ── */
+.how-title {
+  text-align: center;
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(28px, 3vw, 42px);
+  font-weight: 700; color: #fff;
+  letter-spacing: -1px; margin-bottom: 80px;
+
+  /* entrada do título */
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+.how-title.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.steps-wrapper {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: center;
+}
+
+.dashed-path {
+  position: absolute;
+  top: 50%; left: 0; width: 100%;
+  transform: translateY(-112px);
+  pointer-events: none; z-index: 0; overflow: visible;
+
+  /* linha aparece depois dos passos */
+  opacity: 0;
+  transition: opacity .6s ease 1s;
+}
+.dashed-path.is-visible { opacity: 1; }
+
+/* ══════════════════════════════════════════
+   PASSO — estado inicial (invisível)
+══════════════════════════════════════════ */
+.step {
+  position: relative; z-index: 1;
+  display: flex; flex-direction: column;
+  align-items: center; text-align: center; padding: 0 12px;
+
+  opacity: 0;
+  transform: translateY(40px) scale(0.94);
+  transition:
+    opacity  .55s ease,
+    transform .55s ease;
+}
+
+/* visível — cada step tem delay próprio via inline style */
+.step.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* ── Círculo ── */
+.step-circle {
+  position: relative;
+  width: 200px; height: 200px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 28px;
+  background: rgba(255,255,255,0.03);
+  transition: transform 0.3s ease;
+}
+.step-circle::before {
+  content: '';
+  position: absolute; inset: -3px; border-radius: 50%;
+  border: 2px dashed rgba(255,107,0,0.40);
+  animation: rotateDash 20s linear infinite;
+}
+.step.featured .step-circle { background: rgba(255,107,0,0.08); width: 220px; height: 220px; }
+.step.featured .step-circle::before { border-color: rgba(255,107,0,0.70); }
+.step:hover .step-circle { transform: translateY(-6px); }
+
+@keyframes rotateDash { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+/* número do passo — entra com pop */
+.step-number {
+  position: absolute; top: -6px; right: -6px;
+  width: 28px; height: 28px; border-radius: 50%;
+  background: #FF6B00; color: #fff;
+  font-family: var(--font-display), sans-serif; font-size: 12px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 0 12px rgba(255,107,0,0.6); z-index: 2;
+
+  transform: scale(0);
+  transition: transform .35s cubic-bezier(.34,1.56,.64,1);
+}
+.step.is-visible .step-number {
+  transform: scale(1);
+  transition-delay: inherit; /* herda o delay do pai + 0.2s extra via JS */
+}
+
+/* ícone — fade in ligeiramente atrasado */
+.step-icon {
+  width: 100px; height: 100px;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity .4s ease, transform .4s ease;
+}
+.step-icon svg { width: 100%; height: 100%; }
+.step.is-visible .step-icon {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* texto */
+.step-name { font-family: var(--font-display), sans-serif; font-size: 17px; font-weight: 600; color: #fff; margin-bottom: 10px; }
+.step-desc { font-size: 13.5px; line-height: 1.7; color: rgba(255,255,255,0.45); max-width: 200px; }
+.step-desc a { color: #FF6B00; text-decoration: underline; }
+
+/* ── CTA ── */
+.how-cta {
+  text-align: center; margin-top: 80px;
+  display: flex; flex-direction: column; align-items: center; gap: 24px;
+
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+.how-cta.is-visible { opacity: 1; transform: translateY(0); }
+
+.how-cta p { font-size: 17px; color: rgba(255,255,255,0.70); font-weight: 500; }
+.btn-cta {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: #FF6B00; color: #fff; border: none; border-radius: 999px;
+  padding: 15px 34px;
+  font-family: var(--font-display), sans-serif; font-size: 15px; font-weight: 700;
+  cursor: pointer; text-decoration: none;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  box-shadow: 0 4px 24px rgba(255,107,0,0.40);
+}
+.btn-cta:hover { background: #FF8020; transform: translateY(-2px); box-shadow: 0 8px 32px rgba(255,107,0,0.50); }
+.btn-cta svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2.5; stroke-linecap: round; }
+
+/* ── Responsivo ── */
+@media (max-width: 800px) {
+  .steps-wrapper { grid-template-columns: repeat(2, 1fr); gap: 48px; }
+  .dashed-path { display: none; }
+  .how-section { padding: 60px 24px; }
+}
+@media (max-width: 480px) { .steps-wrapper { grid-template-columns: 1fr; } }
