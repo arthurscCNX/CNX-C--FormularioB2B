@@ -1,0 +1,192 @@
+/* Portado de legacy/index.html, linhas 940-1134. Valores inalterados. */
+
+.partners-section {
+  position: relative;
+  padding: 90px 48px;
+  background: #0a0a0a;
+  overflow: hidden;
+}
+
+.partners-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 80px 80px;
+  pointer-events: none;
+}
+
+.partners-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Header */
+.partners-header {
+  text-align: center;
+  margin-bottom: 56px;
+}
+.partners-header h2 {
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(26px, 3vw, 40px);
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -1px;
+  margin-bottom: 12px;
+}
+.partners-header p {
+  font-size: 15px;
+  color: rgba(255,255,255,0.40);
+  max-width: 420px;
+  margin: 0 auto;
+}
+.partners-header p strong { color: #FF6B00; }
+
+/* Grid de logos */
+.partners-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  margin-bottom: 48px;
+}
+
+.partner-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 16px;
+  height: 88px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 20px;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+  cursor: default;
+}
+.partner-card:hover {
+  background: rgba(255,107,0,0.07);
+  border-color: rgba(255,107,0,0.25);
+  transform: translateY(-3px);
+}
+
+/* Placeholder de logo — substitua pela imagem real */
+.partner-card img {
+  max-width: 100%;
+  max-height: 44px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.45;
+  transition: opacity 0.2s, filter 0.2s;
+}
+.partner-card:hover img {
+  opacity: 0.9;
+  filter: brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(350deg);
+}
+
+/* Para parceiros sem imagem ainda — texto placeholder */
+.partner-placeholder {
+  font-family: var(--font-display), sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.30);
+  text-align: center;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.partner-card:hover .partner-placeholder { color: #FF6B00; }
+
+/* Carrossel automático (segunda linha) */
+.partners-marquee {
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 0;
+}
+.partners-marquee::before,
+.partners-marquee::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 120px;
+  z-index: 2;
+  pointer-events: none;
+}
+.partners-marquee::before { left: 0; background: linear-gradient(90deg, #0a0a0a, transparent); }
+.partners-marquee::after  { right: 0; background: linear-gradient(-90deg, #0a0a0a, transparent); }
+
+.marquee-track {
+  display: flex;
+  gap: 16px;
+  width: max-content;
+  animation: marquee 28s linear infinite;
+}
+.marquee-track:hover { animation-play-state: paused; }
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.marquee-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 14px;
+  height: 72px;
+  min-width: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 24px;
+  flex-shrink: 0;
+}
+.marquee-card span {
+  font-family: var(--font-display), sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.28);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+/* CTA */
+.partners-cta {
+  text-align: center;
+  margin-top: 44px;
+}
+.partners-cta p {
+  font-size: 14px;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 16px;
+}
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: 1.5px solid rgba(255,107,0,0.45);
+  color: #FF6B00;
+  border-radius: 999px;
+  padding: 12px 28px;
+  font-family: var(--font-display), sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-outline:hover {
+  background: rgba(255,107,0,0.08);
+  border-color: #FF6B00;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 860px) {
+  .partners-grid { grid-template-columns: repeat(3, 1fr); }
+  .partners-section { padding: 60px 24px; }
+}
+@media (max-width: 520px) {
+  .partners-grid { grid-template-columns: repeat(2, 1fr); }
+}

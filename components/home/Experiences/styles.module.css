@@ -1,0 +1,235 @@
+/* Portado de legacy/index.html, linhas 1135-1372. Valores inalterados. */
+
+.exp-section {
+  position: relative;
+  padding: 100px 48px;
+  background: #0a0a0a;
+  overflow: hidden;
+}
+.exp-section::before {
+  content: '';
+  position: absolute;
+  width: 800px; height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,107,0,0.08) 0%, transparent 65%);
+  top: 20%; left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+.exp-section::after {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 80px 80px;
+  pointer-events: none;
+}
+
+.exp-inner {
+  position: relative; z-index: 1;
+  max-width: 1200px; margin: 0 auto;
+}
+
+/* ── HEADER ── */
+.exp-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 48px;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.exp-header-left { display: flex; flex-direction: column; gap: 10px; }
+
+.exp-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(255,107,0,0.12);
+  border: 1px solid rgba(255,107,0,0.30);
+  border-radius: 999px; padding: 5px 14px;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 1.2px; text-transform: uppercase;
+  color: #FF6B00; width: fit-content;
+}
+.exp-badge::before {
+  content: '';
+  width: 6px; height: 6px; border-radius: 50%;
+  background: #FF6B00;
+  box-shadow: 0 0 6px #FF6B00;
+}
+
+.exp-header h2 {
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(26px, 3vw, 42px);
+  font-weight: 700; color: #fff;
+  letter-spacing: -1px; line-height: 1.1;
+}
+.exp-header h2 span { color: #FF6B00; }
+
+.exp-header p {
+  font-size: 15px; color: rgba(255,255,255,0.40);
+  max-width: 400px; line-height: 1.6;
+}
+
+.btn-see-all {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: transparent;
+  border: 1.5px solid rgba(255,107,0,0.40);
+  color: #FF6B00; border-radius: 999px;
+  padding: 11px 24px;
+  font-family: var(--font-display), sans-serif; font-size: 13px; font-weight: 600;
+  cursor: pointer; text-decoration: none; white-space: nowrap;
+  transition: all 0.2s; flex-shrink: 0;
+}
+.btn-see-all:hover {
+  background: rgba(255,107,0,0.08);
+  border-color: #FF6B00;
+  transform: translateY(-2px);
+}
+
+/* ── GRID ── */
+.exp-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.exp-card {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #1a1a1a;
+  border: 1px solid rgba(255,255,255,0.07);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex; flex-direction: column;
+}
+.exp-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+}
+.exp-card.large { grid-column: span 2; }
+
+.exp-img {
+  position: relative;
+  overflow: hidden;
+  height: 200px;
+}
+.exp-card.large .exp-img { height: 280px; }
+
+.exp-img img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  transition: transform 0.5s ease;
+}
+.exp-card:hover .exp-img img { transform: scale(1.06); }
+
+.exp-img::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.75) 100%);
+}
+
+.exp-cat {
+  position: absolute;
+  top: 14px; left: 14px;
+  z-index: 2;
+  background: rgba(0,0,0,0.65);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 999px;
+  padding: 4px 12px;
+  font-size: 11px; font-weight: 600;
+  color: rgba(255,255,255,0.85);
+}
+
+.exp-top {
+  position: absolute;
+  top: 14px; right: 14px;
+  z-index: 2;
+  background: #FF6B00;
+  border-radius: 999px;
+  padding: 3px 10px;
+  font-family: var(--font-display), sans-serif;
+  font-size: 10px; font-weight: 700;
+  color: #fff; letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.exp-body {
+  padding: 20px;
+  display: flex; flex-direction: column; gap: 12px;
+  flex: 1;
+}
+
+.exp-name {
+  font-family: var(--font-display), sans-serif;
+  font-size: 16px; font-weight: 700;
+  color: #fff; line-height: 1.3;
+}
+.exp-card.large .exp-name { font-size: 18px; }
+
+.exp-place {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 13px; color: rgba(255,255,255,0.40);
+}
+.exp-place svg {
+  width: 12px; height: 12px;
+  stroke: rgba(255,107,0,0.7); fill: none;
+  stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+  flex-shrink: 0;
+}
+
+.exp-benefit {
+  display: flex; align-items: flex-start; gap: 8px;
+  background: rgba(255,107,0,0.10);
+  border: 1px solid rgba(255,107,0,0.18);
+  border-radius: 10px;
+  padding: 10px 12px;
+  margin-top: auto;
+}
+.exp-benefit svg {
+  width: 14px; height: 14px;
+  fill: #FF6B00; flex-shrink: 0; margin-top: 1px;
+}
+.exp-benefit-text { display: flex; flex-direction: column; gap: 2px; }
+.exp-benefit-text .b-label {
+  font-size: 10px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.8px;
+  color: #FF6B00;
+}
+.exp-benefit-text .b-val {
+  font-size: 13px; font-weight: 600;
+  color: rgba(255,255,255,0.80);
+  line-height: 1.3;
+}
+
+/* ── CTA ── */
+.exp-cta {
+  text-align: center; margin-top: 52px;
+  display: flex; flex-direction: column; align-items: center; gap: 18px;
+}
+.exp-cta p { font-size: 14px; color: rgba(255,255,255,0.35); }
+.btn-solid {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: #FF6B00; color: #fff; border: none; border-radius: 999px;
+  padding: 14px 32px;
+  font-family: var(--font-display), sans-serif; font-size: 14px; font-weight: 700;
+  cursor: pointer; text-decoration: none;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  box-shadow: 0 4px 20px rgba(255,107,0,0.35);
+}
+.btn-solid:hover { background: #FF8020; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(255,107,0,0.45); }
+.btn-solid svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2.5; stroke-linecap: round; }
+
+/* ── RESPONSIVO ── */
+@media (max-width: 960px) {
+  .exp-grid { grid-template-columns: repeat(2, 1fr); }
+  .exp-card.large { grid-column: span 2; }
+}
+@media (max-width: 600px) {
+  .exp-grid { grid-template-columns: 1fr; }
+  .exp-card.large { grid-column: span 1; }
+  .exp-section { padding: 60px 24px; }
+  .exp-header { flex-direction: column; align-items: flex-start; }
+}
